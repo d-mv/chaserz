@@ -1,0 +1,44 @@
+// ! temp
+.logo {
+  height: 80px;
+  width: 200px;
+  border: 1px solid red;
+}
+
+// !
+.landing-heading {
+  height: 100px;
+  border: 1px solid red;
+  display: flex;
+  justify-content: space-between;
+  align-content: flex-start;
+}
+
+.landing-buttons-block {
+  height: 100px;
+  width: 300px;
+  border: 1px solid red;
+}
+
+.landing-right {
+  display: flex;
+  justify-content: center;
+  align-content: flex-start;
+}
+
+img.landing-mobiles {
+  height: 78vh;
+}
+
+.landing-button-down-wrapper {
+  text-align: center;
+}
+
+.fa-chevron-down {
+  font-size: 30pt;
+  color: $button-trans;
+  &:hover {
+    transform: scale(1.1);
+    color: $button-trans-hover;
+  }
+}
