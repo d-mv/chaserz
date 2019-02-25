@@ -1,5 +1,6 @@
   .btn-main,
-  .btn-secondary {
+  .btn-secondary,
+  .form-button {
     text-align: baseline;
     font-weight: 500;
     font-size: 16pt;
@@ -36,5 +37,20 @@
     background: $background-grey;
     &:hover {
       box-shadow: $shadow-grey;
+    }
+  }
+
+  .form-actions {
+    text-align: center;
+  }
+
+  .form-button {
+    padding: 10px 30px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    background: $orange-main;
+    width: 170px;
+    &:hover {
+      box-shadow: $shadow-orange;
     }
   }

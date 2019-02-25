@@ -1,0 +1,23 @@
+.mobile-container {
+  padding: 10px 20px;
+}
+
+.form-field {
+  // outline: none;
+  border: none;
+  box-shadow: $shadow-black;
+  transition-duration: 0.7s;
+  background: $background-light;
+  border-bottom: 3px solid white;
+  &:focus {
+    border-bottom: 3px solid $orange-accent;
+    box-shadow: $shadow-orange; // transform: scale(1.05);
+    // box-shadow: none; // border: none; // outline: none;
+    //  1px solid red;
+  }
+}
+
+.form-links {
+  margin: 20px;
+  text-align: center;
+}
