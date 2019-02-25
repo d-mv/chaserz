@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>HR services, anyone????</title>
+  <title>I don't know where I am, we don't know where we are...</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
-body {
-      background-image: url(https://images.unsplash.com/photo-1517664946321-87d2e16ebaa6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80);
+    body {
+      background-image: url(https://images.unsplash.com/photo-1496434036277-c5a9e94ad3cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80);
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center center;
@@ -14,14 +15,15 @@ body {
 
     .message {
       position: fixed;
-      top: 5vh;
-      left: 5vw;
-      text-align: left;
+      bottom: 20vh;
+      left: 0;
+      text-align: center;
       font-size: 24pt;
-      width: 80vw;
+      width: 100%;
       font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
       transition-duration: 1s;
       cursor: pointer;
+      color: white;
     }
 
     .message:hover {
@@ -34,7 +36,7 @@ body {
 
 <body>
 
-    <div class="message" id='back'>Translator from Database language is not yet hired, so we could understand what it's said. Maybe try again later?</div>
+  <div class="message" id='back'>Where is the path to root? Okay, let's try again.</div>
 
   <script>
     const message = document.getElementById('back')
@@ -48,4 +50,5 @@ body {
     })
   </script>
 </body>
+
 </html>
