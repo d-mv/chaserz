@@ -69,7 +69,6 @@
   .landing-wrapper-one {
     padding: 20px 20px 0 20px;
     flex-direction: row;
-    border: 1px solid red;
   }
   .landing-left {
     flex-wrap: wrap;
@@ -110,6 +109,10 @@
   }
   .landing-button-down-wrapper {
     text-align: center;
+  }
+  .landing-banner,
+  .landing-navi {
+    background-size: cover;
   }
 }
 
@@ -157,6 +160,10 @@
   .landing-button-down-wrapper {
     display: none;
   }
+  .landing-banner,
+  .landing-navi {
+    background-size: cover;
+  }
   .landing-banner {
     height: 600px;
     width: 100%;
@@ -202,6 +209,10 @@
     font-size: 20pt;
     font-weight: 300;
   }
+  .landing-banner,
+  .landing-navi {
+    background-size: cover;
+  }
   .landing-banner {
     height: 300px;
     width: 100%;
@@ -210,7 +221,6 @@
   .landing-navi {
     height: 130px;
     width: 270px;
-    background-size: cover;
   }
   .landing-button-down-wrapper,
   #top {
