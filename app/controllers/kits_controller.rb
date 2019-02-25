@@ -1,4 +1,7 @@
 class KitsController < ApplicationController
+
+  before_action :authenticate_user!
+
   before_action :set_kit, only: [:show, :edit, :update, :destroy]
 
   def new
@@ -49,4 +52,5 @@ class KitsController < ApplicationController
   def kit_params
     params.require(:kit).permit(:name, :description, :photo)
   end
+
 end
