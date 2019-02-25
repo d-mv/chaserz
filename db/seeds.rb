@@ -46,7 +46,7 @@ puts 'users created'.green
 puts 'creating kits'.blue
 
 User.all.each do |usr|
-puts '.'.blue
+print '.'.blue
   kit = Kit.create!(
     user_id: usr.id,
     name: Faker::FunnyName.name,
@@ -60,7 +60,7 @@ puts 'created kits'.blue
 
 puts 'races creating'.blue
 User.all.each do |usr|
-  puts '.'.blue
+  print '.'.blue
   start_value = rand(2..30)
   race = Race.create!(
     user_id: usr.id,
@@ -75,7 +75,7 @@ puts 'races created'.green
 puts 'participants creating'.red
 
 Race.all.each do |rce|
-   puts '.'.red
+   print '.'.red
   rand(5..10).times do |part|
    participant = Participant.create!(
     race_id: rce.id,
@@ -93,7 +93,7 @@ puts 'participants created'.red
 puts 'checkpoints creating'.red
 
 Race.all.each do |rce|
-  puts '.'.red
+  print '.'.red
 
  first = Checkpoint.create(
   race_id: rce.id,
