@@ -9,6 +9,13 @@
     transition-duration: 0.7s;
     cursor: pointer;
     white-space: nowrap;
+    &:hover {
+      border-bottom: 3px solid $orange-accent;
+      transform: scale(1.05)
+    }
+    &:active {
+      transform: scale(0.9)
+    }
   }
 
   .btn-main {
@@ -20,9 +27,6 @@
     &:hover {
       box-shadow: $shadow-orange;
     }
-    &:active {
-      transform: scale(0.9)
-    }
   }
 
   .btn-secondary {
@@ -32,8 +36,5 @@
     background: $background-grey;
     &:hover {
       box-shadow: $shadow-grey;
-    }
-    &:active {
-      transform: scale(0.9)
     }
   }
