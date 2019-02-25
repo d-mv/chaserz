@@ -2,6 +2,29 @@
   font-family: 'Jura', sans-serif;
 }
 
+.title {
+  text-align: center;
+  font-weight: 700;
+  font-size: 20pt;
+  letter-spacing: 2px;
+  margin: 10px;
+  color: white;
+  text-shadow: $shadow-black;
+}
+
+.form-label {
+  text-align: center;
+  font-weight: 300;
+  font-size: 14pt;
+  margin: 10px;
+  color: $orange-main;
+  text-shadow: $shadow-black;
+}
+
+.form-link {
+  color: $orange-main;
+}
+
 .s60 {
   font-size: 60pt;
 }
@@ -9,5 +32,3 @@
 .s40 {
   font-size: 40pt;
 }
-
-
