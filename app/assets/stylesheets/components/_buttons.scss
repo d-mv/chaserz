@@ -1,0 +1,39 @@
+  .btn-main,
+  .btn-secondary {
+    text-align: baseline;
+    font-weight: 500;
+    font-size: 16pt;
+    border-radius: 3px;
+    height: 50px;
+    color: white;
+    transition-duration: 0.7s;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .btn-main {
+    padding: 10px 30px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    background: $orange-main;
+    width: 170px;
+    &:hover {
+      box-shadow: $shadow-orange;
+    }
+    &:active {
+      transform: scale(0.9)
+    }
+  }
+
+  .btn-secondary {
+    padding: 8px 30px;
+    width: 120px;
+    text-transform: lowercase;
+    background: $background-grey;
+    &:hover {
+      box-shadow: $shadow-grey;
+    }
+    &:active {
+      transform: scale(0.9)
+    }
+  }
