@@ -1,0 +1,25 @@
+@media (max-width: 450px) {
+  .desktop-wrapper {
+    display:none;
+  }
+}
+
+@media (min-width: 451px) {
+  .desktop-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+  }
+  .desktop-message {
+    margin: 10vh auto;
+    color: white;
+    font-size: 16pt;
+    font-weight: 300;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+  }
+  .mobile-wrapper {
+    display: none
+  }
+}
