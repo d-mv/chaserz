@@ -1,3 +1,50 @@
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes slideInFromBottom {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes rotateEks {
+  0% {
+    // transform: scale(0);
+    transform: rotateX(180deg);
+  }
+  100% {
+    transform: rotateZ(0deg);
+  }
+}
+
+@keyframes rotateWhy {
+  0% {
+    // transform: scale(0);
+    transform: rotateY(180deg);
+  }
+  100% {
+    transform: rotateZ(0deg);
+  }
+}
+
 .landing-heading {
   height: 10%;
   display: flex;
@@ -31,6 +78,14 @@
   background-size: cover;
 }
 
+.landing-left {
+  animation: 1s ease-out 0s 1 slideInFromLeft;
+}
+
+.landing-mobiles {
+  animation: 1s ease-out 0s 1 rotateWhy;
+}
+
 .landing-banner {
   background: url('/assets/landing-banner-9e018f5f8054b23b82786ffce216124011135069068d7b75cbf71a31414ca33e.jpg') no-repeat; //
 }
@@ -48,10 +103,12 @@
   border-radius: 3px 0 0 3px;
   margin-top: 10px;
   height: 80px;
+  animation: 1s ease-out 0s 1 slideInFromRight;
 }
 
 .landing-button {
-  margin: 13px 20px
+  margin: 13px 20px; //
+  animation: 1s ease-out 0s 1 rotateEks;
 }
 
 @media (min-width: 800px) {
@@ -246,4 +303,5 @@ img.landing-mobiles {
   flex-wrap: wrap;
   justify-content: center;
   align-content: center;
+  animation: 1s ease-out 0s 1 slideInFromBottom;
 }
