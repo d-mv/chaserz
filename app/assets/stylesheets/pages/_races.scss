@@ -1,0 +1,87 @@
+@media (max-width: 500px) {
+
+
+
+.main{
+  //background:$background-dark ;
+
+
+}
+.card-map{
+  background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),
+  asset-url('cardmap.png');
+  background-size: cover;
+
+  width: 414px;
+  height: 500px;
+  position: relative;
+}
+.r-status{
+ background:$background-dark ;
+position: absolute;
+right: 0px;
+top: 50px;
+color: white;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 5px 0px 0px 5px;
+
+font-weight: bold;
+line-height: normal;
+font-size: 17px;
+
+text-align: center;
+width: 148px;
+height: 32px;
+}
+.r-status h3{
+  margin: auto;
+}
+
+.r-time{
+ background:$background-light;
+position: absolute;
+right: 0px;
+top: 82px;
+color:$orange-grad;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 5px 0px 0px 5px;
+
+font-weight: bold;
+line-height: normal;
+font-size: 17px;
+
+text-align: center;
+width: 108px;
+height: 32px;
+}
+.r-time h3{
+  margin: auto;
+}
+
+
+
+
+
+
+
+
+
+.logo{
+  margin: auto;
+}
+.card{
+background:$background-light ;
+width: 414px;
+ height: 600px;
+left: 0px;
+top: 24px;
+border: 1px 1px 2px solid;
+box-shadow: $shadow-orange;
+border-radius: 3px 0 0 3px;
+display: flex;
+justify-content: center;
+margin: auto;
+
+}
+
+}
