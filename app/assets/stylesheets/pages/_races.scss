@@ -1,10 +1,21 @@
-@media (max-width: 500px) {
-
-
+@media (max-width: 450px) {
 
 .main{
   //background:$background-dark ;
 
+
+
+}
+.r-name{
+  position: absolute;
+  left:5px;
+  bottom: 80px;
+}
+.user-avatar{
+position: absolute;
+right: 0px;
+  bottom: 20px;
+  margin: 9px;
 
 }
 .card-map{
@@ -13,7 +24,7 @@
   background-size: cover;
 
   width: 414px;
-  height: 500px;
+  height: 470px;
   position: relative;
 }
 .r-status{
@@ -35,6 +46,8 @@ height: 32px;
 }
 .r-status h3{
   margin: auto;
+
+
 }
 
 .r-time{
@@ -42,7 +55,7 @@ height: 32px;
 position: absolute;
 right: 0px;
 top: 82px;
-color:$orange-grad;
+color: rgb(255, 199, 0);
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 border-radius: 5px 0px 0px 5px;
 
@@ -54,8 +67,9 @@ text-align: center;
 width: 108px;
 height: 32px;
 }
-.r-time h3{
+.r-time h4{
   margin: auto;
+  font-size: 27px;
 }
 
 
@@ -68,6 +82,7 @@ height: 32px;
 
 .logo{
   margin: auto;
+  height: 88px;
 }
 .card{
 background:$background-light ;
@@ -78,8 +93,7 @@ top: 24px;
 border: 1px 1px 2px solid;
 box-shadow: $shadow-orange;
 border-radius: 3px 0 0 3px;
-display: flex;
-justify-content: center;
+ position: relative;
 margin: auto;
 
 }
