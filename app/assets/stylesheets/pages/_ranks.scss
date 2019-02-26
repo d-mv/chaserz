@@ -1,0 +1,47 @@
+.ranks-table-wrapper {
+  border: 1px solid $orange-accent;
+  margin: -5px;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.ranks-table {
+  margin: 10px 0;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 4fr 2fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas: "avatar nickname points trophy" "avatar status points trophy";
+}
+
+.ranks-avatar {
+  grid-area: avatar;
+  justify-self: center;
+  align-self: center;
+}
+
+.ranks-nickname {
+  grid-area: nickname;
+  padding: 0 10px;
+}
+
+.ranks-status {
+  grid-area: status;
+  padding: 0 10px;
+}
+
+.ranks-points {
+  grid-area: points;
+  justify-self: center;
+  align-self: center;
+}
+
+.ranks-trophy {
+  grid-area: trophy;
+  justify-self: center;
+  align-self: center;
+}
+
+.ranks-trophy {
+  height: 30px;
+}

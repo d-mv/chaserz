@@ -18,17 +18,20 @@
 }
 
 .t1 {
-  font-size: 20pt; //  padding: 5px 0;
+  font-size: 20pt;
+  text-shadow: $shadow-black;
 }
 
 .t2 {
   font-size: 16pt;
   font-weight: 300;
+  text-shadow: $shadow-black;
 }
 
 .t3 {
   font-size: 14pt;
   letter-spacing: 3px;
+  text-shadow: $shadow-black;
 }
 
 .t4 {
@@ -42,23 +45,27 @@
   font-size: 14pt;
   font-weight: 300;
   letter-spacing: 1px;
+  text-shadow: $shadow-black;
 }
 
 .t6 {
   font-size: 14pt;
   letter-spacing: 1px;
+  text-shadow: $shadow-black;
 }
 
 .t7 {
   font-size: 12pt;
   font-weight: 300;
   letter-spacing: 1px;
+  text-shadow: $shadow-black;
 }
 
 .tx {
   font-size: 16pt;
   font-style: italic;
   letter-spacing: 1px;
+  text-shadow: $shadow-black;
 }
 
 .form-label {
