@@ -64,7 +64,7 @@ User.all.each do |usr|
     user_id: usr.id,
     title: Faker::Lorem.sentence(3),
     start_date: Faker::Date.forward(start_value),
-    category: Faker::Lorem.sentence(3),)
+    category: 'Applied',)
 end
 puts 'done'.blue
 
