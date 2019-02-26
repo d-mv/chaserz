@@ -4,11 +4,24 @@
 <div class='mobile-wrapper'>
   <div class='mobile-container'>
     <div class='spacer-jmb'></div>
-    <div class='text title'>MEMEME</div>
-    <div class='buttons-wrapper'>
-      <div class='landing-button btn-main text profile'>PROFILE</div>
+  <div class="logo text-center">logo</div>
+  <div class=" landing-text-main"><h1>WELCOME,
+  CHASER!</h1></div>
+  <div class="menu-buttons text-center">
+    <%= link_to  races_path do%>
+    <div class="menu-b landing-button btn-main text">RACES</div>
+    <% end %>
+    <%= link_to  "#" do%>
+    <div class="menu-b landing-button btn-main text">RANKS</div>
+    <% end %>
+    <div class='landing-button btn-main text profile'>PROFILE</div>
+    <%= link_to destroy_user_session_path, method: :delete do %>
+    <div class="menu-b landing-button btn-secondary text"> <%= t(".sign_out", default: "Log out") %>
     </div>
+    <% end %>
   </div>
+</div>
+</div>
 </div>
 <%# script to set id to body %>
 <script>
