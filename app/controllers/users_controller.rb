@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, :set_user
 
   def show
-    puts @user
+    @kit = Kit.where(user_id: current_user.id)
   end
 
   private

@@ -1,6 +1,7 @@
 const signInButtons = document.getElementsByClassName('sign-in')
 const registerInButtons = document.getElementsByClassName('register')
 const profileButtons = document.getElementsByClassName('profile')
+const toMenuButtons = document.getElementsByClassName('to-menu')
 const userId = document.querySelector('body').id
 
 
@@ -22,6 +23,13 @@ Array.from(profileButtons).forEach((button) => {
   button.addEventListener('click', event => {
     console.log(`Pressed button %c'PROFILE'`, 'color: white; background-color: orange; padding: 2px 5px; border-radius: 2px;')
     window.location.href = `/users/${userId}`
+  })
+})
+
+Array.from(toMenuButtons).forEach((button) => {
+  button.addEventListener('click', event => {
+    console.log(`Pressed button %c'PROFILE'`, 'color: white; background-color: orange; padding: 2px 5px; border-radius: 2px;')
+    window.location.href = '/'
   })
 })
 

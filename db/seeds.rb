@@ -16,9 +16,9 @@ print '.'.red
 puts 'done'.blue
 
 print 'creating special'.green
-User.create!(email: 'admin@lewagon.com',first_name: 'Dmitry',last_name: 'lewagon', nickname: '👨‍💻dima', profile_type: 'junior', occupation: 'software engineer', photo:'https://picsum.photos/150/?random', password: '123123', points: 0, age: 30, nationality: 'israel')
+User.create!(email: 'admin@lewagon.com',first_name: 'Dmitry',last_name: 'lewagon', nickname: '👨‍💻dima', profile_type: 'junior', occupation: 'software engineer', photo:'https://picsum.photos/150/?random', password: '123123', points: 50000, age: 30, nationality: 'israel')
 print '.admin.'.green
-User.create!(email: 'user@lewagon.com',first_name: 'Roni',last_name: 'lewagon', nickname: 'Ronibaba', profile_type: 'junior', occupation: 'software engineer', photo:'https://picsum.photos/150/?random', password: '123123', points: 0, age: 20, nationality: 'israel')
+User.create!(email: 'user@lewagon.com',first_name: 'Roni',last_name: 'lewagon', nickname: 'Ronibaba', profile_type: 'junior', occupation: 'software engineer', photo:'https://picsum.photos/150/?random', password: '123123', points: 80000, age: 20, nationality: 'israel')
 print '.user.'.green
 puts 'done'.blue
 

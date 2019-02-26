@@ -18,13 +18,15 @@
     transform: scale(0.9)
   }
 }
+.button {
+
+}
 
 .btn-main {
   padding: 10px 30px;
   letter-spacing: 3px;
   text-transform: uppercase;
   background: $orange-main;
-  width: 170px;
   &:hover {
     box-shadow: $shadow-orange;
   }
@@ -32,7 +34,6 @@
 
 .btn-secondary {
   padding: 8px 30px;
-  width: 120px;
   text-transform: lowercase;
   background: $background-grey;
   &:hover {
