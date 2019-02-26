@@ -6,4 +6,7 @@ class PagesController < ApplicationController
 
   def menu
   end
+
+  def ranks
+  end
 end

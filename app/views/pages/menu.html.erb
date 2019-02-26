@@ -4,23 +4,21 @@
 <div class='mobile-wrapper'>
   <div class='mobile-container'>
     <div class='spacer-jmb'></div>
-  <div class="logo text-center">logo</div>
-  <div class=" landing-text-main"><h1>WELCOME,
-  CHASER!</h1></div>
-  <div class="menu-buttons text-center">
-
-    <div class="menu-b landing-button btn-main text races">RACES</div>
-
-
-    <div class="menu-b landing-button btn-main text ranks">RANKS</div>
-
-    <div class='landing-button btn-main text  profile'>PROFILE</div>
-    <%= link_to destroy_user_session_path, method: :delete do %>
-    <div class="menu-b landing-button btn-secondary text logout"><%= t(".sign_out", default: "LOG OUT") %>
+    <div class="logo text-center">logo</div>
+    <div class=" landing-text-main">
+      <h1>WELCOME,
+        CHASER!</h1>
     </div>
-    <% end %>
+    <div class="menu-buttons text-center">
+      <div class="menu-b landing-button btn-main text races">RACES</div>
+      <div class="menu-b landing-button btn-main text ranks">RANKS</div>
+      <div class='landing-button btn-main text profile'>PROFILE</div>
+      <%= link_to destroy_user_session_path, method: :delete do %>
+        <div class="menu-b landing-button btn-secondary text logout"><%= t(".sign_out", default: "LOG OUT") %>
+        </div>
+      <% end %>
+    </div>
   </div>
-</div>
 </div>
 </div>
 <%# script to set id to body %>
