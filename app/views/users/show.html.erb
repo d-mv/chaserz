@@ -1,0 +1,35 @@
+<div class='desktop-wrapper'>
+  <%= render 'shared/desktop' %>
+</div>
+<div class='mobile-wrapper'>
+  <div class='mobile-container'>
+    <%#    <div class='spacer-jmb'></div> %>
+    <div class='text title'>PROFILE</div>
+    <heading>
+      <div class="profile-avatar-wrapper">
+        <div class='avatar-large-border'>
+          <img src='<%= current_user.photo %>' class='avatar-large'>
+        </div>
+      </div>
+      <div class='profile-name-wrapper'>
+        <div class='profile-name text t1 white'><%= current_user.first_name %></div>
+      </div>
+      <div class='profile-nickname-wrapper'>
+        <div class='profile-nickname text t2 white'>"<%= current_user.nickname %>"</div>
+      </div>
+      <div class='profile-trophy-wrapper'>
+        <img src='/assets/trophy-basic-50cb5811c3d3c5819e063be1a0995f9c510b62c9aa2d260d50a29309f17e2560.png' class='profile-trophy'>
+      </div>
+    </heading>
+    <%= current_user.last_name %>
+    <%= current_user.profile_type %>
+    <%= current_user.age %>
+    <%= current_user.nationality %>
+    <%= current_user.occupation %>
+    <%= current_user.points %>
+  </div>
+</div>
+<%# script to set id to body %>
+<script>
+  document.querySelector('body').id='<%= current_user.id %>'
+</script>

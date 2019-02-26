@@ -1,0 +1,40 @@
+// .profile-head-line-one {
+//   display: flex;
+//   justify-content: space-between;
+//   align-content: center;
+// }
+// .profile-head-line-two {
+//   display: block;
+// }
+.profile-avatar-wrapper {
+  grid-area: avatar;
+}
+
+.profile-name-wrapper {
+  grid-area: name-one;
+}
+
+.profile-nickname-wrapper {
+  grid-area: name-two;
+}
+
+.profile-trophy-wrapper {
+  grid-area: trophy;
+}
+
+.profile-title-wrapper {
+  grid-area: title;
+}
+
+.profile-points-wrapper {
+  grid-area: points;
+}
+
+.profile-trophy {
+  height: 40px;
+}
+
+// .profile-name-wrapper {
+//   width: 50%;
+//   align-self: flex-start;
+// }
