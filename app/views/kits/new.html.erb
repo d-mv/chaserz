@@ -12,35 +12,41 @@
 
   <div class="form-inputs">
      <%= f.input :name,
-        required: true,
+        required: false,
         autofocus: true,
-        input_html: { autocomplete: "name" }%>
+        label: 'NAME', label_html: { class: 'text form-label' },
+        input_html: {class: 'text form-field', autocomplete: "name" }%>
          <%= f.input :description,
-        required: true,
+        required: false,
         autofocus: true,
-        input_html: { autocomplete: "description" }%>
+        label: 'DESCRIPTION', label_html: { class: 'text form-label' },
+        input_html: {class: 'text form-field', autocomplete: "description" }%>
 
          <%= f.input :photo,
 
-        required: true,
+        required: false,
         autofocus: true,
-        input_html: { autocomplete: "photo" }%>
+        label: 'PHOTO', label_html: { class: 'text form-label' },
+        input_html: {class: 'text form-field', autocomplete: "photo" }%>
 
 
   </div>
 
   <div class="form-actions">
 
-    <%= f.button :submit , class: "btn btn-primary" %>
+    <%= f.button :submit , class:'form-button text'%>
   </div>
-  <br>
-  <div><%= link_to 'Back', users_path, class: "btn btn-dark" %></div>
+
+
 <% end %>
 
 
+ <div class="form-links">
 
+    <%= link_to 'Back', user_path(current_user.id), class: 'text form-link' %>
+</div>
 
+      </div>
     </div>
   </div>
-</div>
 
