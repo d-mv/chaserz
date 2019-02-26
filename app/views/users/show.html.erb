@@ -3,8 +3,7 @@
 </div>
 <div class='mobile-wrapper'>
   <div class='mobile-container'>
-    <%#    <div class='spacer-jmb'></div> %>
-    <div class='text title'>PROFILE</div>
+    <div class='spacer-lrg'></div>
     <heading>
       <div class="profile-avatar-wrapper">
         <div class='avatar-large-border'>
@@ -20,16 +19,42 @@
       <div class='profile-trophy-wrapper'>
         <img src='/assets/trophy-basic-50cb5811c3d3c5819e063be1a0995f9c510b62c9aa2d260d50a29309f17e2560.png' class='profile-trophy'>
       </div>
+      <div class='profile-title-wrapper text t3 white'>master</div>
+      <div class='profile-points-wrapper text t4 white'><%= number_with_delimiter(current_user.points, :delimiter => ',') %></div>
     </heading>
-    <%= current_user.last_name %>
-    <%= current_user.profile_type %>
-    <%= current_user.age %>
-    <%= current_user.nationality %>
-    <%= current_user.occupation %>
-    <%= current_user.points %>
+    <div class='divider'></div>
+    <div class='profile-title'>
+      <div class='text title white'>Profile</div>
+      <i class="fas fa-pen white"></i></div>
+    <div class='profile-tab'>
+      <div class='profile-tab-title text t5 white'>Full name</div>
+      <div class='profile-tab-data text t6 white'><%= "#{current_user.first_name} #{current_user.last_name}" %></div>
+      <div class='profile-tab-title text t5 white'>Type</div>
+      <div class='profile-tab-data text t6 white'><%= current_user.profile_type %></div>
+      <div class='profile-tab-title text t5 white'>Age</div>
+      <div class='profile-tab-data text t6 white'><%= current_user.age %></div>
+      <div class='profile-tab-title text t5 white'>Nationality</div>
+      <div class='profile-tab-data text t6 white'><%= current_user.nationality %></div>
+      <div class='profile-tab-title text t5 white'>Occupation</div>
+      <div class='profile-tab-data text t6 white'><%= current_user.occupation %></div>
+      <div class='profile-tab-title text t5 white'>Kit</div>
+    </div>
+    <div class='kit-wrapper'>
+      <% i = 0;
+    @kit.each do |item| %>
+        <div class='kit-description text tx white'>:: <%= item.name %></div>
+        <img src='<%= item.photo %>' class='kit-photo' style='<%= "animation: 1s ease-out 0.#{i}s 1 rotateEks;" %>'>
+        <div class='kit-description text t7 white '>- <%= item.description %></div>
+        <div class='divider'></div>
+        <% i+=2 end %>
+      </div>
+      <div class='buttons-wrapper'>
+        <div class='button btn-main text grid-button races'>APPLY FOR RACE</div>
+        <div class='button btn-secondary text grid-button to-menu'>go back</div>
+      </div>
+    </div>
   </div>
-</div>
-<%# script to set id to body %>
-<script>
-  document.querySelector('body').id='<%= current_user.id %>'
-</script>
+  <%# script to set id to body %>
+  <script>
+    document.querySelector('body').id='<%= current_user.id %>'
+  </script>

@@ -3,23 +3,62 @@
 }
 
 .title {
-  text-align: center;
   font-weight: 700;
   font-size: 20pt;
   letter-spacing: 2px;
   margin: 10px;
-  color: white;
   text-shadow: $shadow-black;
 }
 
-.t1{
- font-size: 20pt;
- padding: 5px 0;
+.fa-pen {
+  // font-weight: 700;
+  font-size: 12pt;
+  padding: 20px 10px 10px 10px;
+  text-shadow: $shadow-black;
+}
+
+.t1 {
+  font-size: 20pt; //  padding: 5px 0;
 }
 
 .t2 {
-  font-size: 18pt;
+  font-size: 16pt;
   font-weight: 300;
+}
+
+.t3 {
+  font-size: 14pt;
+  letter-spacing: 3px;
+}
+
+.t4 {
+  font-weight: 700;
+  font-size: 20pt;
+  letter-spacing: 2px; // margin: 10px;
+  text-shadow: $shadow-black;
+}
+
+.t5 {
+  font-size: 14pt;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+.t6 {
+  font-size: 14pt;
+  letter-spacing: 1px;
+}
+
+.t7 {
+  font-size: 12pt;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+.tx {
+  font-size: 16pt;
+  font-style: italic;
+  letter-spacing: 1px;
 }
 
 .form-label {
