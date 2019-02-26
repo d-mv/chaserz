@@ -42,14 +42,14 @@
     </div>
     <div class='divider'></div>
     <div class='profile-title'>
-      <div class='text title white'>KIT</div>
+      <div class='text title white'>Kit</div>
       <%= link_to raw('<i class="fas fa-pen white"></i>') ,  edit_kit_path(@kit.first)%>
       </div>
 
     <div class='kit-wrapper'>
       <% i = 0;
     @kit.each do |item| %>
-        <div c/users/newlass='kit-description text tx white'>:: <%= item.name %></div>
+        <div class='kit-description text tx white'>:: <%= item.name %></div>
         <img src='<%= item.photo %>' class='kit-photo' style='<%= "animation: 1s ease-out 0.#{i}s 1 rotateEks;" %>'>
         <div class='kit-description text t7 white '>- <%= item.description %></div>
         <div class='divider'></div>
