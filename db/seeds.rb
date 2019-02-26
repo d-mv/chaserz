@@ -50,7 +50,7 @@ print '.'.green
     user_id: usr.id,
     name: Faker::FunnyName.name,
     description: Faker::Vehicle.manufacture,
-    photo: 'https://picsum.photos/200/300/?random',
+    photo: 'https://picsum.photos/800/600/?random',
     )
   end
 end

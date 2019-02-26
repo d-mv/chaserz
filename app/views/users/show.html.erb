@@ -23,7 +23,9 @@
       <div class='profile-points-wrapper text t4 white'><%= number_with_delimiter(current_user.points, :delimiter => ',') %></div>
     </heading>
     <div class='divider'></div>
-    <div class='text title white'>Profile</div>
+    <div class='profile-title'>
+      <div class='text title white'>Profile</div>
+      <i class="fas fa-pen white"></i></div>
     <div class='profile-tab'>
       <div class='profile-tab-title text t5 white'>Full name</div>
       <div class='profile-tab-data text t6 white'><%= "#{current_user.first_name} #{current_user.last_name}" %></div>
@@ -38,16 +40,21 @@
       <div class='profile-tab-title text t5 white'>Kit</div>
     </div>
     <div class='kit-wrapper'>
-    <% @kit.each do |item| %>
-    <%= item.photo %>
-    <% end %>
+      <% i = 0;
+    @kit.each do |item| %>
+        <div class='kit-description text tx white'>:: <%= item.name %></div>
+        <img src='<%= item.photo %>' class='kit-photo' style='<%= "animation: 1s ease-out 0.#{i}s 1 rotateEks;" %>'>
+        <div class='kit-description text t7 white '>- <%= item.description %></div>
+        <div class='divider'></div>
+        <% i+=2 end %>
+      </div>
+      <div class='buttons-wrapper'>
+        <div class='button btn-main text grid-button races'>APPLY FOR RACE</div>
+        <div class='button btn-secondary text grid-button to-menu'>go back</div>
+      </div>
     </div>
-  <div class='buttons-wrapper'><div class='button btn-main text grid-button races'>APPLY FOR RACE</div>
-  <div class='button btn-secondary text grid-button to-menu'>go back</div></div>
-
   </div>
-</div>
-<%# script to set id to body %>
-<script>
-  document.querySelector('body').id='<%= current_user.id %>'
-</script>
+  <%# script to set id to body %>
+  <script>
+    document.querySelector('body').id='<%= current_user.id %>'
+  </script>

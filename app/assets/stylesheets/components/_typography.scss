@@ -10,6 +10,13 @@
   text-shadow: $shadow-black;
 }
 
+.fa-pen {
+  // font-weight: 700;
+  font-size: 12pt;
+  padding: 20px 10px 10px 10px;
+  text-shadow: $shadow-black;
+}
+
 .t1 {
   font-size: 20pt; //  padding: 5px 0;
 }
@@ -39,6 +46,18 @@
 
 .t6 {
   font-size: 14pt;
+  letter-spacing: 1px;
+}
+
+.t7 {
+  font-size: 12pt;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+.tx {
+  font-size: 16pt;
+  font-style: italic;
   letter-spacing: 1px;
 }
 
