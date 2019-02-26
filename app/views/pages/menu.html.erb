@@ -1,1 +1,20 @@
-<h1>mememe</h1>
+<div class="main">
+  <div class="logo text-center">logo</div>
+  <div class=" landing-text-main"><h1>WELCOME,
+  CHASER!</h1></div>
+  <div class="menu-buttons text-center">
+    <%= link_to  races_path do%>
+    <div class="menu-b landing-button btn-main text">RACES</div>
+    <% end %>
+    <%= link_to  "#" do%>
+    <div class="menu-b landing-button btn-main text">RANKS</div>
+    <% end %>
+    <%= link_to  races_path do%>
+    <div class="menu-b landing-button btn-main text">PROFILE</div>
+    <% end %>
+    <%= link_to destroy_user_session_path, method: :delete do %>
+    <div class="menu-b landing-button btn-secondary text"> <%= t(".sign_out", default: "Log out") %>
+    </div>
+    <% end %>
+  </div>
+</div>

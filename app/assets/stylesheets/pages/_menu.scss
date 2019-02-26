@@ -1,0 +1,23 @@
+@media (max-width: 450px) {
+.main{
+
+}
+.menu-buttons{
+  margin-top: 70px;
+display: flex;
+flex-direction: column;
+align-items: center;
+text-align: center;
+}
+
+.menu-b{
+  margin: 15px;
+
+}
+
+a:hover{
+    text-decoration: none !important;
+  }
+
+
+}

@@ -12,6 +12,36 @@
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= f.error_notification %>
     <div class="form-inputs">
+       <%= f.input :first_name,
+                required: false,
+                autofocus: true,
+                label: 'FIRST NAME', label_html: { class: 'text form-label' },
+                input_html: { class: 'text form-field', autocomplete: "first_name" } %>
+                 <%= f.input :last_name,
+                required: false,
+                autofocus: true,
+                label: 'LAST NAME', label_html: { class: 'text form-label' },
+                input_html: { class: 'text form-field', autocomplete: "last_name" } %>
+                 <%= f.input :nickname,
+                required: false,
+                autofocus: true,
+                label: 'NICKNAME', label_html: { class: 'text form-label' },
+                input_html: { class: 'text form-field', autocomplete: "nickname" } %>
+                 <%= f.input :age,
+                required: false,
+                autofocus: true,
+                label: 'AGE', label_html: { class: 'text form-label' },
+                input_html: { class: 'text form-field', autocomplete: "age" } %>
+                 <%= f.input :occupation,
+                required: false,
+                autofocus: true,
+                label: 'OCCUPATION', label_html: { class: 'text form-label' },
+                input_html: { class: 'text form-field', autocomplete: "occupation" } %>
+                 <%= f.input :photo,
+                required: false,
+                autofocus: true,
+                label: 'PHOTO', label_html: { class: 'text form-label' },
+                input_html: { class: 'text form-field', autocomplete: "photo" } %>
       <%= f.input :email,
                 required: false,
                 autofocus: true,
@@ -35,3 +65,4 @@
   </div>
 </div>
 </div>
+
