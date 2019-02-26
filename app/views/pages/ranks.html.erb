@@ -8,7 +8,7 @@
     <div class='spacer'></div>
     <div class='ranks-table-wrapper'>
       <% @ranks.each do |user| %>
-        <div class='ranks-table'>
+        <div class='ranks-table' id='<%= user.id %>'>
           <div class='ranks-avatar avatar-small-border'>
             <img src='<%= user.photo %>' class='avatar-small'>
           </div>

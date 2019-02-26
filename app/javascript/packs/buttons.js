@@ -6,9 +6,14 @@ const racesButtons = document.getElementsByClassName('races')
 const ranksButtons = document.getElementsByClassName('ranks')
 const logoutButtons = document.getElementsByClassName('logout')
 const userId = document.querySelector('body').id
+const ranksRow = document.getElementsByClassName('ranks-table')
 
-
-
+Array.from(ranksRow).forEach((button) => {
+  button.addEventListener('click', event => {
+    console.log(`Selected user %c${button.id }`, 'color:grey;background-color: gainsboro; padding: 3px 5px;')
+    window.location.href = `/users/${button.id}`
+  })
+})
 
 Array.from(signInButtons).forEach ((button)=>{
   button.addEventListener('click', event => {
@@ -35,7 +40,7 @@ Array.from(profileButtons).forEach((button) => {
 Array.from(toMenuButtons).forEach((button) => {
   button.addEventListener('click', event => {
     console.log(`Pressed button %c'PROFILE'`, 'color: white; background-color: orange; padding: 2px 5px; border-radius: 2px;')
-    window.location.href = '/'
+    window.history.go(-1)
   })
 })
 
