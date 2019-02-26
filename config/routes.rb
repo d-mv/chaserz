@@ -1,7 +1,19 @@
 Rails.application.routes.draw do
+
+  devise_scope :user do
+      authenticated :user do
+        root :to => 'pages#menu'
+      end
+
+  unauthenticated :user do
+    root :to =>'pages#home', as: :unauthenticated_root
+  end
+
+end
   devise_for :users
 
-  root to: 'pages#home'
+
+  get '/menu', to: 'pages#menu'
 
   resources :users, only: %i[show index] do
     resources :kits, only: %i[new create]
