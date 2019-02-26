@@ -8,6 +8,8 @@ const logoutButtons = document.getElementsByClassName('logout')
 const userId = document.querySelector('body').id
 
 
+
+
 Array.from(signInButtons).forEach ((button)=>{
   button.addEventListener('click', event => {
     console.log(`Pressed button %c'sign in'`, 'color:grey;background-color: gainsboro; padding: 3px 5px;')
