@@ -12,8 +12,8 @@ Rails.application.routes.draw do
 end
   devise_for :users
 
-
   get '/menu', to: 'pages#menu'
+  get '/ranks', to: 'pages#ranks'
 
   resources :users, only: %i[show index] do
     resources :kits, only: %i[new create]

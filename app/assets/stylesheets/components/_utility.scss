@@ -17,7 +17,13 @@
 .divider {
   width: 90%;
   border-bottom: 1px solid $orange-accent;
-  margin: 10px auto ;
+  margin: 10px auto;
+}
+
+.ranks-divider {
+  width: 70%;
+  border-bottom: 1px solid white;
+  margin: 3px auto;
 }
 
 .spacer-lrg {
@@ -26,4 +32,8 @@
 
 .spacer-jmb {
   margin: 60px;
+}
+
+.spacer{
+  margin: 20px
 }

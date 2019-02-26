@@ -1,0 +1,28 @@
+<div class='desktop-wrapper'>
+  <%= render 'shared/desktop' %>
+</div>
+<div class='mobile-wrapper'>
+  <div class='mobile-container'>
+    <div class='spacer'></div>
+    <div class='text title white center'>RANKS TABLE</div>
+    <div class='spacer'></div>
+    <div class='ranks-table-wrapper'>
+      <% @ranks.each do |user| %>
+        <div class='ranks-table'>
+          <div class='ranks-avatar avatar-small-border'>
+            <img src='<%= user.photo %>' class='avatar-small'>
+          </div>
+          <div class='ranks-nickname text t7 white'><%= user.nickname %></div>
+          <div class='ranks-status text t7 white'><%= 'megastar' %></div>
+          <div class='ranks-points text t6 white'><%= number_with_delimiter(user.points, :delimiter => ',') %></div>
+          <div class='ranks-trophy'>
+            <img src='/assets/trophy-basic-50cb5811c3d3c5819e063be1a0995f9c510b62c9aa2d260d50a29309f17e2560.png' class='ranks-trophy'>
+          </div>
+        </div>
+        <% if (@ranks.size > 1) %>
+          <div class='ranks-divider'></div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

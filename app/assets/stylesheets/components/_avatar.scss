@@ -19,3 +19,17 @@
   border-radius: 50%;
   height: 110px;
 }
+
+.avatar-small-border {
+  padding: 2px;
+  border-radius: 50%;
+  height: 37px;
+  width: 37px;
+  background: linear-gradient(#FFC700, #CF7C00);
+  box-shadow: $shadow-orange;
+}
+
+.avatar-small {
+  border-radius: 50%;
+  height: 33px;
+}

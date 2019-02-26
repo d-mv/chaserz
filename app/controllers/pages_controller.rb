@@ -6,4 +6,8 @@ class PagesController < ApplicationController
 
   def menu
   end
+
+  def ranks
+    @ranks = User.order(points: :desc)
+  end
 end
