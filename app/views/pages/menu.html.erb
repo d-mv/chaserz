@@ -1,1 +1,16 @@
-<h1>mememe</h1>
+<div class='desktop-wrapper'>
+  <%= render 'shared/desktop' %>
+</div>
+<div class='mobile-wrapper'>
+  <div class='mobile-container'>
+    <div class='spacer-jmb'></div>
+    <div class='text title'>MEMEME</div>
+    <div class='buttons-wrapper'>
+      <div class='landing-button btn-main text profile'>PROFILE</div>
+    </div>
+  </div>
+</div>
+<%# script to set id to body %>
+<script>
+  document.querySelector('body').id='<%= current_user.id %>'
+</script>
