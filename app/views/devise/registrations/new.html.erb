@@ -8,21 +8,51 @@
 <div class='mobile-wrapper'>
 <div class='mobile-container'>
   <div class='spacer-jmb'></div>
-  <div class='text title center'>SIGN IN</div>
+  <div class='text title'>SIGN UP</div>
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= f.error_notification %>
     <div class="form-inputs">
+       <%= f.input :first_name,
+                required: false,
+                autofocus: true,
+                label: 'FIRST NAME', label_html: { class: 'text form-label' },
+                input_html: { class: 'text form-field', autocomplete: "first_name" } %>
+                 <%= f.input :last_name,
+                required: false,
+                autofocus: true,
+                label: 'LAST NAME', label_html: { class: 'text form-label' },
+                input_html: { class: 'text form-field', autocomplete: "last_name" } %>
+                 <%= f.input :nickname,
+                required: false,
+                autofocus: true,
+                label: 'NICKNAME', label_html: { class: 'text form-label' },
+                input_html: { class: 'text form-field', autocomplete: "nickname" } %>
+                 <%= f.input :age,
+                required: false,
+                autofocus: true,
+                label: 'AGE', label_html: { class: 'text form-label' },
+                input_html: { class: 'text form-field', autocomplete: "age" } %>
+                 <%= f.input :occupation,
+                required: false,
+                autofocus: true,
+                label: 'OCCUPATION', label_html: { class: 'text form-label' },
+                input_html: { class: 'text form-field', autocomplete: "occupation" } %>
+                 <%= f.input :photo,
+                required: false,
+                autofocus: true,
+                label: 'PHOTO', label_html: { class: 'text form-label' },
+                input_html: { class: 'text form-field', autocomplete: "photo" } %>
       <%= f.input :email,
-                required: true,
+                required: false,
                 autofocus: true,
                 label: 'EMAIL', label_html: { class: 'text form-label' },
-                input_html: { class: 'text form-field', autocomplete: "email" } %> }%>
+                input_html: { class: 'text form-field', autocomplete: "email" } %>
       <%= f.input :password,
-                required: true, label: 'PASSWORD',  label_html: { class: 'text form-label' },
+                required: false, label: 'PASSWORD',  label_html: { class: 'text form-label' },
                 hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
+                input_html: {class: 'text form-field', autocomplete: "new-password" } %>
       <%= f.input :password_confirmation,
-                required: true, label: 'PASSWORD',  label_html: { class: 'text form-label' },
+                required: false, label: 'COMFIRM PASSWORD',  label_html: { class: 'text form-label' },
                 input_html: { class: 'text form-field',autocomplete: "new-password" } %>
     </div>
     <div class="form-actions">
@@ -31,7 +61,8 @@
   <% end %>
 
   <div class="form-links">
-  <%= render "devise/shared/links" %>
+  <%= render "devise/shared/links", class: "landing-button btn-secondary text" %>
   </div>
 </div>
 </div>
+

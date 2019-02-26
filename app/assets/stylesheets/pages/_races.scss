@@ -2,9 +2,6 @@
 
 .main{
   //background:$background-dark ;
-
-
-
 }
 .r-name{
   position: absolute;
@@ -13,7 +10,7 @@
 }
 .user-avatar{
 position: absolute;
-right: 0px;
+right: 2px;
   bottom: 20px;
   margin: 9px;
 
@@ -27,7 +24,7 @@ right: 0px;
   height: 470px;
   position: relative;
 }
-.r-status{
+.r-category{
  background:$background-dark ;
 position: absolute;
 right: 0px;
@@ -38,13 +35,14 @@ border-radius: 5px 0px 0px 5px;
 
 font-weight: bold;
 line-height: normal;
-font-size: 17px;
+font-size: 10px;
 
 text-align: center;
 width: 148px;
-height: 32px;
+height: 50px;
+padding: 5px 2px;
 }
-.r-status h3{
+.r-category h3{
   margin: auto;
 
 
@@ -54,7 +52,7 @@ height: 32px;
  background:$background-light;
 position: absolute;
 right: 0px;
-top: 82px;
+top: 100px;
 color: rgb(255, 199, 0);
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 border-radius: 5px 0px 0px 5px;
@@ -83,6 +81,7 @@ height: 32px;
 .logo{
   margin: auto;
   height: 88px;
+  border: red solid;
 }
 .card{
 background:$background-light ;
@@ -90,12 +89,13 @@ width: 414px;
  height: 600px;
 left: 0px;
 top: 24px;
-border: 1px 1px 2px solid;
+border: 1px 1px 3px solid;
 box-shadow: $shadow-orange;
 border-radius: 3px 0 0 3px;
  position: relative;
-margin: auto;
-
+margin-bottom: 38px;
+margin-right: auto;
+margin-left: auto;
 }
 
 }
