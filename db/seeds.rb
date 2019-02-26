@@ -6,24 +6,23 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-print '~ destroying...'.red
-
-
-
+print '~ destroying'.red
 Race.destroy_all
+print '.'.red
 Kit.destroy_all
+print '.'.red
 User.destroy_all
-
-
+print '.'.red
 puts 'done'.blue
 
-puts 'creating us'
+print 'creating special'.green
 User.create!(email: 'admin@lewagon.com',first_name: 'dmitry',last_name: 'lewagon', nickname: 'dmitrybaba', profile_type: 'junior', occupation: 'software engineer', photo:'https://picsum.photos/150/?random', password: '123123', points: 0, age: 30, nationality: 'israel')
+print '.admin.'.green
 User.create!(email: 'user@lewagon.com',first_name: 'roni',last_name: 'lewagon', nickname: 'ronibaba', profile_type: 'junior', occupation: 'software engineer', photo:'https://picsum.photos/150/?random', password: '123123', points: 0, age: 20, nationality: 'israel')
+print '.user.'.green
+puts 'done'.blue
 
-
-puts 'users'
-
+print 'creating users'.green
 10.times do
   print '.'.green
   user = User.new(
@@ -42,79 +41,73 @@ puts 'users'
   )
   user.save!
 end
-puts 'users created'.green
-puts 'creating kits'.blue
+puts 'done'.blue
 
+print 'creating kits'.green
 User.all.each do |usr|
-print '.'.blue
-  kit = Kit.create!(
+print '.'.green
+  rand(1..3).times do |el|
+    Kit.create!(
     user_id: usr.id,
     name: Faker::FunnyName.name,
     description: Faker::Vehicle.manufacture,
     photo: 'https://picsum.photos/200/300/?random',
     )
+  end
 end
+puts 'done'.blue
 
-puts 'created kits'.blue
-
-
-puts 'races creating'.blue
+print 'creating races'.green
 User.all.each do |usr|
-  print '.'.blue
+  print '.'.green
   start_value = rand(2..30)
-  race = Race.create!(
+  Race.create!(
     user_id: usr.id,
     title: Faker::Lorem.sentence(3),
     start_date: Faker::Date.forward(start_value),
     category: Faker::Lorem.sentence(3),)
 end
+puts 'done'.blue
 
-puts 'races created'.green
-
-
-puts 'participants creating'.red
-
+print 'assigning participants'.green
 Race.all.each do |rce|
-   print '.'.red
+  print '.'.green
   rand(5..10).times do |part|
-   participant = Participant.create!(
+   Participant.create!(
     race_id: rce.id,
     user_id: User.all.sample.id,
     duration: rand(1000..60000),
-     points: rand(0..100),
-     status: %w[finished dropped missed].sample,
+    points: rand(0..100),
+    status: %w[finished dropped missed].sample,
    )
  end
 end
+puts 'done'.blue
 
-puts 'participants created'.red
-
-
-puts 'checkpoints creating'.red
-
+print 'creating checkpoints'.green
 Race.all.each do |rce|
-  print '.'.red
-
- first = Checkpoint.create(
+  print '.'.green
+  Checkpoint.create!(
   race_id: rce.id,
   lon: 34.769618,
   lat: 32.084481,
   )
- second = Checkpoint.create(
+  Checkpoint.create!(
   race_id: rce.id,
   lon: 34.768127,
   lat: 32.082198,
   )
-  third = Checkpoint.create(
+  Checkpoint.create!(
   race_id: rce.id,
   lon: 34.766925,
   lat: 32.078598,
   )
-  fourth = Checkpoint.create(
+  Checkpoint.create!(
   race_id: rce.id,
   lon: 34.766925,
   lat: 32.078598,
   )
-
   end
-puts 'checkpoints created'.red
+puts 'done'.blue
+puts ''
+puts 'All done!'.green
