@@ -6,25 +6,32 @@
   </div>
 </div>
 <div class='mobile-wrapper'>
-  <h2>Sign up</h2>
+<div class='mobile-container'>
+  <div class='spacer-jmb'></div>
+  <div class='text title'>SIGN IN</div>
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= f.error_notification %>
     <div class="form-inputs">
       <%= f.input :email,
                 required: true,
                 autofocus: true,
-                input_html: { autocomplete: "email" }%>
+                label: 'EMAIL', label_html: { class: 'text form-label' },
+                input_html: { class: 'text form-field', autocomplete: "email" } %> }%>
       <%= f.input :password,
-                required: true,
+                required: true, label: 'PASSWORD',  label_html: { class: 'text form-label' },
                 hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
                 input_html: { autocomplete: "new-password" } %>
       <%= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: "new-password" } %>
+                required: true, label: 'PASSWORD',  label_html: { class: 'text form-label' },
+                input_html: { class: 'text form-field',autocomplete: "new-password" } %>
     </div>
     <div class="form-actions">
-      <%= f.button :submit, "Sign up" %>
+      <%= f.button :submit, "SIGN UP", class:'form-button text' %>
     </div>
   <% end %>
+
+  <div class="form-links">
   <%= render "devise/shared/links" %>
+  </div>
+</div>
 </div>
