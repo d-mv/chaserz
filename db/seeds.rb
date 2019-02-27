@@ -28,6 +28,7 @@ print 'creating users'.green
 
 url = "https://uifaces.co/api?random&limit=20"
 people = JSON.parse(open(url,"X-API-KEY" => XAPIKEY).read)
+
 i = 0
 20.times do
   print '.'.green

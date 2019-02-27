@@ -1,12 +1,8 @@
 <div class='desktop-wrapper'>
-  <div class='desktop-message text'>
-    <p>Dear Racer!</p>
-    <p>This is a mobile game, please sign in on your mobile.</p>
-    <p>Thank you and enjoy.</p>
-  </div>
+  <%= render 'shared/desktop' %>
 </div>
 <div class='mobile-wrapper'>
-<div class='mobile-container'>
+  <div class='mobile-container'>
   <div class='spacer-jmb'></div>
   <div class='text title center white'>SIGN UP</div>
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
