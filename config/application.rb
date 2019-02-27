@@ -6,6 +6,11 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+Dotenv::Railtie.load
+
+XAPIKEY = ENV['XAPIKEY']
+
+
 module Chaserz
   class Application < Rails::Application
     config.generators do |generate|
