@@ -8,6 +8,6 @@ class UsersController < ApplicationController
   private
 
   def set_user
-    @user = User.find(params[:id]) if params[:id].class == Integer
+    @user = User.find(params[:id]) if params[:id].to_i.class == Integer
   end
 end

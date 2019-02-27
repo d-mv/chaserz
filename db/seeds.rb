@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+# binding.pry
+
 print '~ destroying'.red
 Race.destroy_all
 print '.'.red
@@ -23,22 +25,29 @@ print '.user.'.green
 puts 'done'.blue
 
 print 'creating users'.green
-10.times do
+
+url = "https://uifaces.co/api?random&limit=20"
+people = JSON.parse(open(url,"X-API-KEY" => XAPIKEY).read)
+i = 0
+20.times do
   print '.'.green
+
   user = User.new(
-    email:    Faker::Internet.email,
-    first_name:   Faker::Name.name,
+    email:     people[i]["email"],
+    # first_name:   Faker::Name.name,
+    first_name:   people[i]["name"],
     last_name:   Faker::Name.last_name,
     nickname: Faker::Movies::StarWars.character,
     profile_type: 'junior',
     age: rand(13..40),
-    occupation: Faker::Job.title,
+    occupation:  people[i]["position"],
     points: 0,
     nationality: 'israel',
-    photo: 'https://picsum.photos/150/?random',
+    photo:  people[i]["photo"],
     password: "123123"
   )
   user.save!
+  i += 1
 end
 puts 'done'.blue
 
@@ -71,14 +80,18 @@ puts 'done'.blue
 print 'assigning participants'.green
 Race.all.each do |rce|
   print '.'.green
-  rand(5..10).times do |part|
+  qty = rand(3..10)
+  users = User.all.sample(qty)
+  counter = 0
+  qty.times do |part|
    Participant.create!(
     race_id: rce.id,
-    user_id: User.all.sample.id,
+    user_id: users[counter].id,
     duration: rand(1000..60000),
     points: rand(0..100),
     status: %w[finished dropped missed].sample,
    )
+   counter += 1
  end
 end
 puts 'done'.blue
@@ -103,8 +116,8 @@ Race.all.each do |rce|
   )
   Checkpoint.create!(
   race_id: rce.id,
-  lon: 34.766925,
-  lat: 32.078598,
+  lon: 34.767925,
+  lat: 32.078698,
   )
   end
 puts 'done'.blue

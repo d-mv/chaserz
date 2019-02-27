@@ -7,54 +7,54 @@
     <heading>
       <div class="profile-avatar-wrapper">
         <div class='avatar-large-border'>
-          <img src='<%= current_user.photo %>' class='avatar-large'>
+          <img src='<%= @user.photo %>' class='avatar-large'>
         </div>
       </div>
       <div class='profile-name-wrapper'>
-        <div class='profile-name text t1 white'><%= current_user.first_name %></div>
+        <div class='profile-name text t1 white'><%= @user.first_name %></div>
       </div>
       <div class='profile-nickname-wrapper'>
-        <div class='profile-nickname text t2 white'>"<%= current_user.nickname %>"</div>
+        <div class='profile-nickname text t2 white'>"<%= @user.nickname %>"</div>
       </div>
       <div class='profile-trophy-wrapper'>
         <img src='/assets/trophy-basic-50cb5811c3d3c5819e063be1a0995f9c510b62c9aa2d260d50a29309f17e2560.png' class='profile-trophy'>
       </div>
       <div class='profile-title-wrapper text t3 white'>master</div>
-      <div class='profile-points-wrapper text t4 white'><%= number_with_delimiter(current_user.points, :delimiter => ',') %></div>
+      <div class='profile-points-wrapper text t4 white'><%= number_with_delimiter(@user.points, :delimiter => ',') %></div>
     </heading>
     <div class='divider'></div>
     <div class='profile-title'>
       <div class='text title white'>Profile</div>
       <%= link_to raw('<i class="fas fa-pen white"></i>') , edit_user_registration_path%>
-      </div>
+    </div>
     <div class='profile-tab'>
       <div class='profile-tab-title text t5 white'>Full name</div>
-      <div class='profile-tab-data text t6 white'><%= "#{current_user.first_name} #{current_user.last_name}" %></div>
+      <div class='profile-tab-data text t6 white'><%= "#{@user.first_name} #{@user.last_name}" %></div>
       <div class='profile-tab-title text t5 white'>Type</div>
-      <div class='profile-tab-data text t6 white'><%= current_user.profile_type %></div>
+      <div class='profile-tab-data text t6 white'><%= @user.profile_type %></div>
       <div class='profile-tab-title text t5 white'>Age</div>
-      <div class='profile-tab-data text t6 white'><%= current_user.age %></div>
+      <div class='profile-tab-data text t6 white'><%= @user.age %></div>
       <div class='profile-tab-title text t5 white'>Nationality</div>
-      <div class='profile-tab-data text t6 white'><%= current_user.nationality %></div>
+      <div class='profile-tab-data text t6 white'><%= @user.nationality %></div>
       <div class='profile-tab-title text t5 white'>Occupation</div>
-      <div class='profile-tab-data text t6 white'><%= current_user.occupation %></div>
-
+      <div class='profile-tab-data text t6 white'><%= @user.occupation %></div>
     </div>
     <div class='divider'></div>
     <div class='profile-title'>
-      </div>
 
+      <div class='text title white'>Kit</div>
+      <%# link_to raw('<i class="fas fa-pen white"></i>') ,  edit_kit_path(@kit.first)%>
+    </div>
     <div class='kit-wrapper'>
       <% i = 0;
     @kit.each do |item| %>
-
-
-        <div c/users/newlass='kit-description text tx white'>:: <%= item.name %></div>
+        <div class='kit-description text tx white'>:: <%= item.name %></div>
         <img src='<%= item.photo %>' class='kit-photo' style='<%= "animation: 1s ease-out 0.#{i}s 1 rotateEks;" %>'>
         <div class='kit-description text t7 white '>- <%= item.description %>   <%= link_to raw('<i class="fas fa-pen white"></i>') ,  edit_kit_path(item)%></div>
         <div class='divider'></div>
         <% i+=2 end %>
-      </div>/users/new
+      </div>
+      /users/new
       <div class='buttons-wrapper'>
         <div class='button btn-main text grid-button races'>APPLY FOR RACE</div>
         <div class='button btn-secondary text grid-button to-menu'>go back</div>
@@ -63,9 +63,5 @@
   </div>
   <%# script to set id to body %>
   <script>
-    document.querySelector('body').id='<%= current_user.id %>'
+    document.querySelector('body').id='<%= @user.id %>'
   </script>
-
-
-
-

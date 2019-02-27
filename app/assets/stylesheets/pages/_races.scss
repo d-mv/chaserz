@@ -1,101 +1,204 @@
-@media (max-width: 450px) {
-
-.main{
-  //background:$background-dark ;
+.race-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  grid-template-areas: "map" 'title' 'participants';
+  box-shadow: $shadow-orange;
+  border: 2px solid $orange-accent;
+  border-radius: 5px;
+  background-image: $background-grey;
+  margin-bottom: 40px;
 }
-.r-name{
-  position: absolute;
-  left:5px;
-  bottom: 80px;
-}
-.user-avatar{
-position: absolute;
-right: 2px;
-  bottom: 20px;
-  margin: 9px;
 
-}
-.card-map{
-  background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),
-  asset-url('cardmap.png');
-  background-size: cover;
-
-  width: 414px;
-  height: 470px;
+.race-card-map-wrapper {
+  display: inline;
   position: relative;
-}
-.r-category{
- background:$background-dark ;
-position: absolute;
-right: 0px;
-top: 50px;
-color: white;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-border-radius: 5px 0px 0px 5px;
-
-font-weight: bold;
-line-height: normal;
-font-size: 10px;
-
-text-align: center;
-width: 148px;
-height: 50px;
-padding: 5px 2px;
-}
-.r-category h3{
-  margin: auto;
-
-
+  top: 0;
+  left: 0;
 }
 
-.r-time{
- background:$background-light;
-position: absolute;
-right: 0px;
-top: 100px;
-color: rgb(255, 199, 0);
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-border-radius: 5px 0px 0px 5px;
-
-font-weight: bold;
-line-height: normal;
-font-size: 17px;
-
-text-align: center;
-width: 108px;
-height: 32px;
-}
-.r-time h4{
-  margin: auto;
-  font-size: 27px;
+.race-card-map {
+  border-radius: 5px 5px 0 0;
+  width: 100%;
+  height: 200px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-
-
-
-
-
-
-
-
-.logo{
-  margin: auto;
-  height: 88px;
-  border: red solid;
-}
-.card{
-background:$background-light ;
-width: 414px;
- height: 600px;
-left: 0px;
-top: 24px;
-border: 1px 1px 3px solid;
-box-shadow: $shadow-orange;
-border-radius: 3px 0 0 3px;
- position: relative;
-margin-bottom: 38px;
-margin-right: auto;
-margin-left: auto;
+.race-show-map {
+  width: 100%;
+  height: 300px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-top: 1px solid $orange-main;
+  border-bottom: 1px solid $orange-accent;
+  box-shadow: $shadow-orange;
 }
 
+.race-show-details-wrapper {
+  margin: 40px 0 20px 0;
 }
+
+.race-show-check-list {
+  list-style: none;
+}
+
+.race-show-check-list-item {}
+
+.race-card-status {
+  position: absolute;
+  top: 20px;
+  right: 0;
+  border-radius: 5px 0 0 5px;
+  padding: 3px 10px 4px 10px;
+  background: $background-dark;
+  animation: 1s ease-out 0s 1 rotateEks;
+}
+
+.race-card-when {
+  position: absolute;
+  top: 51px;
+  right: 0;
+  border-radius: 5px 0 0 5px;
+  padding: 3px 10px 4px 10px;
+  background: $background-light;
+  animation: 1s ease-out 0s 1 rotateEks;
+}
+
+.race-card-participants {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+  padding: 0 10px;
+}
+
+.race-show-participants {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.left-arrow {
+  margin-left: -5
+}
+
+.right-arrow {
+  margin-right: -5
+}
+
+.race-card-avatar-mar {
+  margin-left: -10px;
+}
+
+.race-show-avatar {
+  &:nth-child(4) {
+    transform: scale(1.75);
+    margin: 0 10px;
+  }
+}
+
+.race-show-avatar-min {
+  transform: scale(1.75);
+  margin: 0 10px;
+}
+
+.race-show-arrow {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin: 0;
+  padding: 5px 5px 0 5px;
+}
+
+.race-card-title {
+  margin: 10px 0;
+}
+
+.typewriter {
+  overflow: hidden;
+  white-space: nowrap;
+  padding-left: 10px;
+  animation: typing 3.5s steps(40, end)
+}
+
+// @media (max-width: 450px) {
+//   .r-name {
+//     position: absolute;
+//     left: 5px;
+//     bottom: 80px;
+//   }
+//   .user-avatar {
+//     position: absolute;
+//     right: 2px;
+//     bottom: 20px;
+//     margin: 9px;
+//   }
+//   .card-map {
+//     background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), asset-url('cardmap.png');
+//     background-size: cover;
+//     width: 414px;
+//     height: 470px;
+//     position: relative;
+//   }
+//   .r-category {
+//     background: $background-dark;
+//     position: absolute;
+//     right: 0px;
+//     top: 50px;
+//     color: white;
+//     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+//     border-radius: 5px 0px 0px 5px;
+//     font-weight: bold;
+//     line-height: normal;
+//     font-size: 10px;
+//     text-align: center;
+//     width: 148px;
+//     height: 50px;
+//     padding: 5px 2px;
+//   }
+//   .r-category h3 {
+//     margin: auto;
+//   }
+//   .r-time {
+//     background: $background-light;
+//     position: absolute;
+//     right: 0px;
+//     top: 100px;
+//     color: rgb(255, 199, 0);
+//     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+//     border-radius: 5px 0px 0px 5px;
+//     font-weight: bold;
+//     line-height: normal;
+//     font-size: 17px;
+//     text-align: center;
+//     width: 108px;
+//     height: 32px;
+//   }
+//   .r-time h4 {
+//     margin: auto;
+//     font-size: 27px;
+//   }
+//   .logo {
+//     margin: auto;
+//     height: 88px;
+//     border: red solid;
+//   }
+//   .card {
+//     background: $background-light;
+//     width: 414px;
+//     height: 600px;
+//     left: 0px;
+//     top: 24px;
+//     border: 1px 1px 3px solid;
+//     box-shadow: $shadow-orange;
+//     border-radius: 3px 0 0 3px;
+//     position: relative;
+//     margin-bottom: 38px;
+//     margin-right: auto;
+//     margin-left: auto;
+//   }
+// }

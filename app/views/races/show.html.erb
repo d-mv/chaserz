@@ -1,0 +1,56 @@
+<div class='desktop-wrapper'>
+  <%= render 'shared/desktop' %>
+</div>
+<div class='mobile-wrapper'>
+  <div class='mobile-container'>
+  <div class='race-card-title text t4r white typewriter'>
+          <%= @race.title %>
+        </div>
+  </div>
+  <div class='race-show-map-wrapper'>
+  <div class='race-show-map' style='background-image: url("/assets/images/cardmap.png");'></div></div>
+  <div class='mobile-container'>
+    <div class='spacer-lrg'></div>
+    <div class='race-show-participants'>
+      <div class='race-show-arrow'>
+        <i class="fas fa-chevron-left t1 accent left-arrow" id='left'></i>
+      </div>
+      <% @participants.each do |participant| %>
+        <div class='ranks-avatar avatar-small-border <%=  @participants.length < 5 ? "race-show-avatar-min" : "race-show-avatar"%>'  id='<%= participant.user_id %>' title='<%= participant.user.nickname %>'>
+          <img src='<%= participant.user.photo %>' class='avatar-small' alt='<%= participant.user.nickname %>' >
+        </div>
+      <% end %>
+      <div class='race-show-arrow'>
+        <i class="fas fa-chevron-right t1 accent right-arrow" id='right'></i>
+      </div>
+    </div>
+    <div class='race-show-details-wrapper text white'>
+    <ul class='race-show-check-list'>
+    <% @locations.each do |location| %>
+   <li class='race-show-check-list-item t5'><%=  location %></li>
+    <% end %>
+    </ul>
+    </div>
+    <div class='buttons-wrapper'>
+    <div class='button btn-main text grid-button races'>APPLY FOR RACE</div>
+    <div class='button btn-secondary text grid-button to-races'>go back</div>
+  </div>
+  </div>
+</div>
+<script>
+  document.querySelector('body').id='<%= @race.id %>'
+  document.querySelector('body').dataset.start = "<%= @start.nil? ? 0 : @start %>"
+
+  const right = document.getElementById('right')
+  const left = document.getElementById('left')
+
+  right.addEventListener('click',event => {
+    console.log('right')
+    window.location.href = ('/races/<%= @race.id %>?start=<%= @start+1 %>')
+  })
+  left.addEventListener('click',event => {
+    console.log('left')
+        const start = <%= @start-1 < 0 ? 0 :  @start-1 %>
+        window.location.href = (`/races/<%= @race.id %>?start=${start}`)
+  })
+</script>
