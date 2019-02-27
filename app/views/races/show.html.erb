@@ -1,0 +1,24 @@
+<div class='desktop-wrapper'>
+  <%= render 'shared/desktop' %>
+</div>
+<div class='mobile-wrapper'>
+  <div class='mobile-container'>
+    <div class='spacer-lrg'></div>
+    <div class='race-show-participants'>
+      <div class='race-show-arrow'>
+        <i class="fas fa-chevron-left t1 accent left-arrow"></i>
+      </div>
+      <% @race.participants[0..4].each do |participant| %>
+        <div class='ranks-avatar avatar-small-border race-show-avatar'>
+          <img src='<%= participant.user.photo %>' class='avatar-small'>
+        </div>
+      <% end %>
+      <div class='race-show-arrow'>
+        <i class="fas fa-chevron-right t1 accent right-arrow"></i>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  document.querySelector('body').id='<%= @race.id %>'
+</script>

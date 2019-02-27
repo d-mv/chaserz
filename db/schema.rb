@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 2019_02_24_134248) do
 
   create_table "races", force: :cascade do |t|
     t.string "title"
-    t.time "start_date"
+    t.datetime "start_date"
     t.string "category"
     t.bigint "user_id"
     t.datetime "created_at", null: false

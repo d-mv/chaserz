@@ -1,16 +1,47 @@
-<div class="main">
-  <div class="logo text-center">logo</div>
-
-<% @races.each do |race| %>
-  <div class="card">
-    <div class="card-map">
-      <div class="r-category text"><h3><%= race.category %></h3></div>
-      <div class="r-time text"><h4><%= race.start_date.strftime("%d") %></h4></div>
-    </div>
-    <div class="r-name text"><h3><%= race.title %></h3></div>
-    <div class="user-avatar"><%= image_tag "https://kitt.lewagon.com/placeholder/users/cveneziani", class: "avatar", alt: "avatar" %>
-      <%= image_tag "https://kitt.lewagon.com/placeholder/users/cveneziani", class: "avatar", alt: "avatar" %>
+<div class='desktop-wrapper'>
+  <%= render 'shared/desktop' %>
 </div>
-  </div>
+<div class='mobile-wrapper'>
+  <div class='mobile-container'>
+    <div class='spacer'></div>
+    <div class='text title white center'>RACES AVAILABLE</div>
+    <div class='spacer'></div>
+    <% @races.each do |race|
+      if race.start_date >= Date.parse(Date.today.to_s) %>
+      <div class="race-card" id='<%= race.id %>'>
+        <div class="race-card-map-wrapper">
+          <div class='race-card-map' style='background-image: url("/assets/images/cardmap.png");'></div>
+          <% my_races = race.participants.where(race_id: race.id, user_id: current_user.id).length %>
+          <% if my_races == 1 %>
+            <div class="race-card-status text center white">applied</div>
+          <%end%>
+          <div class='race-card-when text center'>
+            <% days = (Date.parse(race.start_date.to_s)-Date.parse(Date.today.to_s)).to_i %>
+            <%= if days > 1
+                "in #{days} days"
+                elsif days = 0
+                'today'
+                else
+                "in 1 day"
+                end %>
+          </div>
+        </div>
+        <%# TODO: Set if participant %>
+        <div class='race-card-title text t2 typewriter'>
+          <%= race.title %>
+        </div>
+        <div class='race-card-participants'>
+          <% race.participants.each do |participant| %>
+            <div class='ranks-avatar avatar-small-border race-card-avatar-mar' style='<%= "animation: 1s ease-out 0s 1 rotateWhy;" %>'>
+              <img src='<%= participant.user.photo %>' class='avatar-small'>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end -%>
   <% end -%>
+  <div class='buttons-wrapper'>
+    <div class='button btn-secondary text grid-button to-menu'>go back</div>
+  </div>
+</div>
 </div>
