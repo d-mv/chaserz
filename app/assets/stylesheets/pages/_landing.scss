@@ -1,50 +1,3 @@
-@keyframes slideInFromRight {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateY(0%);
-  }
-}
-
-@keyframes slideInFromLeft {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(0%);
-  }
-}
-
-@keyframes slideInFromBottom {
-  0% {
-    transform: translateY(100%);
-  }
-  100% {
-    transform: translateX(0%);
-  }
-}
-
-@keyframes rotateEks {
-  0% {
-    // transform: scale(0);
-    transform: rotateX(180deg);
-  }
-  100% {
-    transform: rotateZ(0deg);
-  }
-}
-
-@keyframes rotateWhy {
-  0% {
-    // transform: scale(0);
-    transform: rotateY(180deg);
-  }
-  100% {
-    transform: rotateZ(0deg);
-  }
-}
-
 .landing-heading {
   height: 10%;
   display: flex;
@@ -87,11 +40,11 @@
 }
 
 .landing-banner {
-  background: url('/assets/landing-banner-9e018f5f8054b23b82786ffce216124011135069068d7b75cbf71a31414ca33e.jpg') no-repeat; //
+  background: url('https://res.cloudinary.com/diciu4xpu/image/upload/v1551267840/chaserz/landing-banner.jpg') no-repeat; //
 }
 
 .landing-navi {
-  background: url('/assets/mobile-nav-7c419822c5c50d5ab324862a6753792cc5cebf7af0f44a955518d1cada161110.png') no-repeat;
+  background: url('https://res.cloudinary.com/diciu4xpu/image/upload/v1551267840/chaserz/mobile-nav.png') no-repeat;
 }
 
 .landing-text-main,

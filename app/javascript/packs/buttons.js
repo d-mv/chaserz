@@ -2,6 +2,7 @@ const signInButtons = document.getElementsByClassName('sign-in')
 const registerInButtons = document.getElementsByClassName('register')
 const profileButtons = document.getElementsByClassName('profile')
 const toMenuButtons = document.getElementsByClassName('to-menu')
+const toMenuButtonsX = document.getElementsByClassName('to-menu-x')
 const toRacesButtons = document.getElementsByClassName('to-races')
 const racesButtons = document.getElementsByClassName('races')
 const ranksButtons = document.getElementsByClassName('ranks')
@@ -60,6 +61,13 @@ Array.from(toMenuButtons).forEach((button) => {
   button.addEventListener('click', event => {
     console.log(`Pressed button %c'PROFILE'`, 'color: white; background-color: orange; padding: 2px 5px; border-radius: 2px;')
     window.history.go(-1)
+  })
+})
+
+Array.from(toMenuButtonsX).forEach((button) => {
+  button.addEventListener('click', event => {
+    console.log(`Pressed button %c'PROFILE'`, 'color: white; background-color: orange; padding: 2px 5px; border-radius: 2px;')
+    window.location.href = ('/menu')
   })
 })
 
