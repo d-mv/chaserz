@@ -25,6 +25,7 @@ class KitsController < ApplicationController
 
   def edit
 
+
   end
 
   def update
