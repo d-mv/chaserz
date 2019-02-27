@@ -10,12 +10,14 @@
     <%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Jura:300,400,500,700' %>
     <%= stylesheet_link_tag 'https://use.fontawesome.com/releases/v5.7.2/css/all.css' %>
     <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
+    <%# map requirements %>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
   </head>
   <body id=0>
     <%# <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
     <%= yield %>
-
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
   </body>

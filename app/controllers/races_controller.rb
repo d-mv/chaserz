@@ -21,11 +21,14 @@ class RacesController < ApplicationController
         @participants = @race.participants[@start..@start + 4]
       end
     end
-
     @locations = []
     Checkpoint.where(race_id: @race.id).each do |checkpoint|
       @locations << coordinates_to_text(checkpoint.lat, checkpoint.lon)
     end
+  end
+
+  def map
+    
   end
 
   private
