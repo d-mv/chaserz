@@ -116,8 +116,8 @@ Race.all.each do |rce|
   )
   Checkpoint.create!(
   race_id: rce.id,
-  lon: 34.766925,
-  lat: 32.078598,
+  lon: 34.767925,
+  lat: 32.078698,
   )
   end
 puts 'done'.blue
