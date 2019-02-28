@@ -26,8 +26,10 @@ const coordinates = pos => {
 
 navigator.geolocation.getCurrentPosition(coordinates)
 
-setTimeout(() => {
 
+
+setTimeout(() => {
+  console.table(position.geometry.coordinates)
   map.on('load', function () {
     map.loadImage("https://res.cloudinary.com/diciu4xpu/image/upload/v1551278802/chaserz/marker.png", function (error, image) { //this is where we load the image file
       if (error) throw error;
@@ -45,6 +47,12 @@ setTimeout(() => {
           "icon-size": 0.2 //this is a multiplier applied to the standard size. So if you want it half the size put ".5"
         }
       })
+      map.flyTo({
+        center: [
+          position.geometry.coordinates[0],
+          position.geometry.coordinates[1]],
+          zoom: 18
+      });
     })
   })
 
