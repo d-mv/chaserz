@@ -1,15 +1,12 @@
-const mapElement = document.getElementById('map');
-mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
-
-console.log(mapElement.dataset.mapboxApiKey)
-
+mapboxgl.accessToken = 'pk.eyJ1IjoiZC1tdiIsImEiOiJjanNvYmdndTIwajNnM3lvNDl5ZG82aG8xIn0.N0NV8g7WfsBbJMcYlg7uvQ'
+// mylocation
 const myCenter = [34.7681902, 32.0765364]
 
 var map = new mapboxgl.Map({
   container: 'map', // container id
   style: 'mapbox://styles/mapbox/dark-v9', //stylesheet location
   center: myCenter, // starting position
-  zoom: 14, // starting zoom
+  zoom: 18, // starting zoom
 });
 
 // set the bounds of the map
@@ -81,8 +78,8 @@ function getRoute(end) {
 
     var tripInstructions = [];
     for (var i = 0; i < steps.length; i++) {
-      tripInstructions.push('<br><li class="text t5 white">' + steps[i].maneuver.instruction) + '</li>';
-      instructions.innerHTML = '<div class="map-instructions text t4 white">Instructions:</div><span class="duration text t6 accent">- race duration: ' + Math.floor(data.duration / 60) + ' min</span>' + tripInstructions + '<div class="map-divider"></div>';
+      tripInstructions.push('<br><li>' + steps[i].maneuver.instruction) + '</li>';
+      instructions.innerHTML = '<br><span class="duration">Trip duration: ' + Math.floor(data.duration / 60) + ' min 🚴 </span>' + tripInstructions;
     };
   };
   req.send();
@@ -92,6 +89,7 @@ map.on('load', function () {
   // make an initial directions request that
   // starts and ends at the same location
   getRoute(start);
+
   // Add destination to the map
   map.addLayer({
     "id": "point",

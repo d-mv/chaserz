@@ -3,12 +3,13 @@
 </div>
 <div class='mobile-wrapper'>
   <div class='mobile-container'>
-  <div class='race-card-title text t4r white typewriter'>
-          <%= @race.title %>
-        </div>
+    <div class='race-card-title text t4r white typewriter'>
+      <%= @race.title %>
+    </div>
   </div>
   <div class='race-show-map-wrapper'>
-  <div class='race-show-map' style='background-image: url("https://res.cloudinary.com/diciu4xpu/image/upload/v1551267840/chaserz/cardmap.png");'></div></div>
+    <div class='race-show-map' style='background-image: url("https://res.cloudinary.com/diciu4xpu/image/upload/v1551267840/chaserz/cardmap.png");'></div>
+  </div>
   <div class='mobile-container'>
     <div class='spacer-lrg'></div>
     <div class='race-show-participants'>
@@ -25,25 +26,26 @@
       </div>
     </div>
     <div class='race-show-details-wrapper text white'>
-    <ul class='race-show-check-list'>
-    <% @locations.each do |location| %>
-   <li class='race-show-check-list-item t5'><%=  location %></li>
-    <% end %>
-    </ul>
+      <ul class='race-show-check-list'>
+        <% @locations.each do |location| %>
+          <li class='race-show-check-list-item t5'><%=  location %></li>
+        <% end %>
+      </ul>
     </div>
     <div class='buttons-wrapper'>
-    <div class='button btn-main text grid-button races'>APPLY FOR RACE</div>
-    <div class='button btn-secondary text grid-button to-races'>go back</div>
-  </div>
+      <div class='button btn-main text grid-button start-race'>START</div>
+      <div class='button btn-main text grid-button races'>APPLY FOR RACE</div>
+      <div class='button btn-secondary text grid-button to-races'>go back</div>
+    </div>
   </div>
 </div>
 <script>
   document.querySelector('body').id='<%= @race.id %>'
   document.querySelector('body').dataset.start = "<%= @start.nil? ? 0 : @start %>"
-
+  
   const right = document.getElementById('right')
   const left = document.getElementById('left')
-
+  
   right.addEventListener('click',event => {
     console.log('right')
     window.location.href = ('/races/<%= @race.id %>?start=<%= @start+1 %>')

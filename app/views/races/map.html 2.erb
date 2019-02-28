@@ -1,0 +1,66 @@
+<style>
+  body {
+    margin:0;
+    padding:0;
+  }
+  #map {
+    position:absolute;
+    top:0;
+    bottom:0;
+    width:100%;
+  }
+  #instructions {
+    position:absolute;
+    margin:20px;
+    width: 25%;
+    top:0;
+    bottom:20%;
+    padding: 20px;
+    background-color: rgba(255,255,255,0.9);
+    overflow-y: scroll;
+    font-family: sans-serif;
+    font-size: 0.8em;
+    line-height: 2em;
+  }
+  .duration {
+    font-size: 2em;
+  }
+  </style>
+<div id="map" class="mapboxgl-map">
+  <div class="mapboxgl-canary" style="visibility: hidden;"></div>
+  <div class="mapboxgl-canvas-container mapboxgl-interactive mapboxgl-touch-drag-pan mapboxgl-touch-zoom-rotate">
+    <canvas class="mapboxgl-canvas" style="position: absolute; width: 799px; height: 803px;" tabindex="0" aria-label="Map" width="1598" height="1606"></canvas>
+  </div>
+  <div class="mapboxgl-control-container">
+    <div class="mapboxgl-ctrl-top-left"></div>
+    <div class="mapboxgl-ctrl-top-right"></div>
+    <div class="mapboxgl-ctrl-bottom-left">
+      <div class="mapboxgl-ctrl" style="display: block;"><a class="mapboxgl-ctrl-logo" target="_blank" href="https://www.mapbox.com/" aria-label="Mapbox logo" rel="noopener"></a></div>
+    </div>
+    <div class="mapboxgl-ctrl-bottom-right">
+      <div class="mapboxgl-ctrl mapboxgl-ctrl-attrib">
+        <div class="mapboxgl-ctrl-attrib-inner"><a href="https://www.mapbox.com/about/maps/" target="_blank">© Mapbox</a> <a href="http://www.openstreetmap.org/about/" target="_blank">© OpenStreetMap</a> <a class="mapbox-improve-map" href="https://apps.mapbox.com/feedback/?owner=mapbox&amp;id=streets-v11&amp;access_token=pk.eyJ1IjoiZXhhbXBsZXMiLCJhIjoiY2lqbmpqazdlMDBsdnRva284cWd3bm11byJ9.V6Hg2oYJwMAxeoR9GEzkAA" target="_blank">Improve this map</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="instructions"><br>
+  <span class="duration">Trip duration: 9 min 🚴 </span><br>
+  <li>Head west,<br>
+  </li>
+  <li>Turn right onto Northeast 3rd Avenue,<br>
+  </li>
+  <li>Continue right onto Northeast Davis Street,<br>
+  </li>
+  <li>Turn left onto Northeast 7th Avenue,<br>
+  </li>
+  <li>Continue right onto Northeast Flanders Street,<br>
+  </li>
+  <li>Turn left onto Northeast 11th Avenue,<br>
+  </li>
+  <li>Continue onto Northeast Irving Street,<br>
+  </li>
+  <li>Turn right onto Northeast 24th Avenue,<br>
+  </li>
+  <li>You have arrived at your destination</li>
+</div>

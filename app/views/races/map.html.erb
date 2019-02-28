@@ -1,8 +1,17 @@
-<style>
-  body { margin:0; padding:0; }
-  #map { position:absolute; top:0; bottom:0; width:100%; }
-</style>
-<div id='map'></div>
-<script>
+<div id="map" class="mapboxgl-map" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+  <div class="mapboxgl-canary" style="visibility: hidden;"></div>
+  <div class="mapboxgl-canvas-container mapboxgl-interactive mapboxgl-touch-drag-pan mapboxgl-touch-zoom-rotate">
+    <canvas class="mapboxgl-canvas" style="position: absolute; width: 799px; height: 803px;" tabindex="0" aria-label="Map" width="1598" height="1606"></canvas>
+  </div>
+  <div class="mapboxgl-control-container">
+    <div class="mapboxgl-ctrl-top-left"></div>
+    <div class="mapboxgl-ctrl-top-right"></div>
+    <div class="mapboxgl-ctrl-bottom-left">
+      <div class="mapboxgl-ctrl" style="display: block;"><a class="mapboxgl-ctrl-logo" target="_blank" href="https://www.mapbox.com/" aria-label="Mapbox logo" rel="noopener"></a></div>
+    </div>
+  </div>
+</div>
 
-</script>
+<div id="instructions"><br>
+  <span class="duration"></span><br>
+</div>
