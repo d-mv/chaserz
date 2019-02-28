@@ -11,7 +11,13 @@ const userId = document.querySelector('body').id
 const ranksRows = document.getElementsByClassName('ranks-table')
 const raceCards = document.getElementsByClassName('race-card')
 const raceAvatars = document.getElementsByClassName('race-show-avatar')
+const startRace = document.getElementsByClassName('start-race')
 
+Array.from(startRace).forEach((button) => {
+  button.addEventListener('click', event => {
+    window.location.href = `/map`
+  })
+})
 
 Array.from(raceAvatars).forEach((button) => {
   button.addEventListener('click', event => {
