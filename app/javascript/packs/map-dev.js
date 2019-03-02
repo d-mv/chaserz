@@ -1,6 +1,8 @@
 // set up map API key
 const mapElement = document.getElementById('map');
-mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
+mapboxKey = mapElement.dataset.mapboxApiKey
+console.log(mapboxKey)
+mapboxgl.accessToken = mapboxKey;
 
 // start/end coordinates
 // TODO: inputs
