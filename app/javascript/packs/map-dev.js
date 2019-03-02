@@ -17,7 +17,6 @@ const map = new mapboxgl.Map({
   center: myStart, // @starting position
   zoom: 14 // TODO: Adjust
 });
-
 // to use touch later
 var canvas = map.getCanvasContainer();
 
@@ -127,39 +126,8 @@ fetch(url)
       });
       // TODO: add layer with current locations of others
       // show my current location
-      // navigator.geolocation.getCurrentPosition((coordinates) => {
-      //   // form GeoJson for current location
-      //   let positionJson = {
-      //     "geometry": {
-      //       "type": "Point",
-      //       "coordinates": [coordinates.coords.longitude, coordinates.coords.latitude]
-      //     },
-      //     "type": "Feature",
-      //     "properties": {}
-      //   }
-      //   // show on the map
-      //   map.loadImage("https://res.cloudinary.com/diciu4xpu/image/upload/v1551461746/chaserz/marker_v2.png", function (error, image) { //this is where we load the image file
-      //     if (error) throw error;
-      //     map.addImage("custom-marker", image); //this is where we name the image file we are loading
-      //     map.addLayer({
-      //       'id': "markers", //this is the name of the layer, it is what we will reference below
-      //       'type': "symbol",
-      //       'source': { //now we are adding the source to the layer more directly and cleanly
-      //         type: "geojson",
-      //         data: positionJson // CHANGE THIS TO REFLECT WHERE YOUR DATA IS COMING FROM
-      //       },
-      //       'layout': {
-      //         "icon-image": "custom-marker", // the name of image file we used above
-      //         "icon-allow-overlap": false,
-      //         "icon-size": 0.2 //this is a multiplier applied to the standard size. So if you want it half the size put ".5"
-      //       }
-      //     })
-      //   })
-      // })
-      // changer
-      let counter = 0
       setInterval(() => {
-// process
+        // process
         navigator.geolocation.getCurrentPosition((coordinates) => {
           // form GeoJson for current location
           let positionJson = {
@@ -177,30 +145,26 @@ fetch(url)
           }
           // or create new
           else {
-          map.loadImage("https://res.cloudinary.com/diciu4xpu/image/upload/v1551461746/chaserz/marker_v2.png", function (error, image) { //this is where we load the image file
-            if (error) throw error;
-            map.addImage("custom-marker", image); //this is where we name the image file we are loading
-            map.addLayer({
-              'id': "markers", //this is the name of the layer, it is what we will reference below
-              'type': "symbol",
-              'source': { //now we are adding the source to the layer more directly and cleanly
-                type: "geojson",
-                data: positionJson // CHANGE THIS TO REFLECT WHERE YOUR DATA IS COMING FROM
-              },
-              'layout': {
-                "icon-image": "custom-marker", // the name of image file we used above
-                "icon-allow-overlap": false,
-                "icon-size": 0.2 //this is a multiplier applied to the standard size. So if you want it half the size put ".5"
-              }
+            map.loadImage("https://res.cloudinary.com/diciu4xpu/image/upload/v1551461746/chaserz/marker_v2.png", function (error, image) { //this is where we load the image file
+              if (error) throw error;
+              map.addImage("custom-marker", image); //this is where we name the image file we are loading
+              map.addLayer({
+                'id': "markers", //this is the name of the layer, it is what we will reference below
+                'type': "symbol",
+                'source': { //now we are adding the source to the layer more directly and cleanly
+                  type: "geojson",
+                  data: positionJson // CHANGE THIS TO REFLECT WHERE YOUR DATA IS COMING FROM
+                },
+                'layout': {
+                  "icon-image": "custom-marker", // the name of image file we used above
+                  "icon-allow-overlap": false,
+                  "icon-size": 0.2 //this is a multiplier applied to the standard size. So if you want it half the size put ".5"
+                }
+              })
             })
-          })
-        }
-          counter += 1
-          console.log(`Location requested ${counter} times`)
-          console.log(positionJson)
+          }
         })
-// end of process
-
+        // end of process
       }, 500);
     })
   })

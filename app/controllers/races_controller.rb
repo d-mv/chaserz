@@ -30,7 +30,6 @@ class RacesController < ApplicationController
   def map
     location = params[:location]
     @location = location.split(',').map {|el| el.to_f}
-    @key = ENV['MAPBOX_API_KEY']
   end
 
   private
