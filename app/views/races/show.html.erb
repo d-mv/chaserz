@@ -42,10 +42,18 @@
 <script>
   document.querySelector('body').id='<%= @race.id %>'
   document.querySelector('body').dataset.start = "<%= @start.nil? ? 0 : @start %>"
-  
+
   const right = document.getElementById('right')
   const left = document.getElementById('left')
-  
+
+  let myPosition = []
+
+const coordinates = pos => {
+  position = [pos.coords.longitude, pos.coords.latitude]
+}
+
+navigator.geolocation.getCurrentPosition(coordinates)
+
   right.addEventListener('click',event => {
     console.log('right')
     window.location.href = ('/races/<%= @race.id %>?start=<%= @start+1 %>')

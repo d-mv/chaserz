@@ -1,51 +1,56 @@
-mapboxgl.accessToken = 'pk.eyJ1IjoiZC1tdiIsImEiOiJjanNvYmdndTIwajNnM3lvNDl5ZG82aG8xIn0.N0NV8g7WfsBbJMcYlg7uvQ'
-// mylocation
-const myCenter = [34.7681902, 32.0765364]
+// set up map API key
+const mapElement = document.getElementById('map');
+mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
 
-var map = new mapboxgl.Map({
-  container: 'map', // container id
-  style: 'mapbox://styles/mapbox/dark-v9', //stylesheet location
-  center: myCenter, // starting position
-  zoom: 18, // starting zoom
+// start/end coordinates
+// TODO: inputs
+const myStart = [34.842772, 32.167252]
+const myEnd = [34.852847, 32.167941]
+// const currentLocation = [34.768330, 32.077234]
+
+// drawings map
+const map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/mapbox/dark-v10',
+  center: myStart, // @starting position
+  zoom: 14 // TODO: Adjust
 });
 
-// set the bounds of the map
-// var bounds = [[34.8, 32.1], [34.6, 31.9]];
-// map.setMaxBounds(bounds);
-
-// initialize the map canvas to interact with later
+// to use touch later
 var canvas = map.getCanvasContainer();
 
-// an arbitrary start will always be the same
-// only the end or destination will change
-var start = myCenter;
+// TODO: calculate below, based on the start/end
+// var bounds = [[parseFloat((myStart[0] + 0.1).toFixed(5)), parseFloat((myStart[1] - 0.1).toFixed(5))], [parseFloat((myEnd[0] - 0.1).toFixed(5)), parseFloat((myEnd[1] + 0.1).toFixed(5))]];
+// console.log(bounds)
+// map.setMaxBounds(bounds);
 
-// create a function to make a directions request
-function getRoute(end) {
-  // make directions request using cycling profile
-  var url = 'https://api.mapbox.com/directions/v5/mapbox/cycling/' + start[0] + ',' + start[1] + ';' + end[0] + ',' + end[1] + '?steps=true&geometries=geojson&access_token=' + mapboxgl.accessToken;
+// form the request to API with start/end coordinates
+const url = 'https://api.mapbox.com/directions/v5/mapbox/cycling/' + myStart[0] + ',' + myStart[1] + ';' + myEnd[0] + ',' + myEnd[1] + '?steps=true&geometries=geojson&access_token=' + mapboxgl.accessToken;
+// request API
+fetch(url)
+  .then(response => response.json())
+  .then((data) => {
+    // choose routes section
+    const routes = data.routes[0]
+    // choose route instructions
+    const instructions = document.getElementById('instructions');
+    // choose route steps
+    const steps = routes.legs[0].steps;
+    // form instructions
+    // var tripInstructions = [];
+    // for (var i = 0; i < steps.length; i++) {
+    //   // TODO: drop the last one/or add turn by turn navigation, based on the geoLocation
+    //   tripInstructions.push('<br><li class="text t5 white">' + steps[i].maneuver.instruction) + '</li>';
+    //   instructions.innerHTML = '<div class="map-instructions text t4 white">Instructions:</div><span class="duration text t6 accent">- race duration: ' + Math.floor(data.duration / 60) + ' min</span>' + tripInstructions + '<div class="map-divider"></div>';
+    // }
 
-  // make an XHR request https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
-  var req = new XMLHttpRequest();
-  req.responseType = 'json';
-  req.open('GET', url, true);
-  req.onload = function () {
-    var data = req.response.routes[0];
-    var route = data.geometry.coordinates;
-    var geojson = {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "LineString",
-        "coordinates": route
-      }
-    };
-    // if the route already exists on the map, we'll reset it using setData
-    if (map.getSource('route')) {
-      map.getSource('route').setData(geojson);
-    }
-    // otherwise, we'll make a new request
-    else {
+    // form coordinates array for routes
+    const coordinates = []
+    routes.geometry.coordinates.forEach((waypoint) => {
+      coordinates.push(waypoint)
+    })
+    // display the route
+    map.on('load', function () {
       map.addLayer({
         "id": "route",
         "type": "line",
@@ -56,7 +61,8 @@ function getRoute(end) {
             "properties": {},
             "geometry": {
               "type": "LineString",
-              "coordinates": geojson
+              // TODO: change below to repsonse from API
+              "coordinates": routes.geometry.coordinates
             }
           }
         },
@@ -65,100 +71,134 @@ function getRoute(end) {
           "line-cap": "round"
         },
         "paint": {
-          "line-color": "#3887be",
-          "line-width": 5,
-          "line-opacity": 0.75
+          "line-color": "#FFC700",
+          "line-width": 6
         }
-      });
-    };
-
-    // get the sidebar and add the instructions
-    var instructions = document.getElementById('instructions');
-    var steps = data.legs[0].steps;
-
-    var tripInstructions = [];
-    for (var i = 0; i < steps.length; i++) {
-      tripInstructions.push('<br><li>' + steps[i].maneuver.instruction) + '</li>';
-      instructions.innerHTML = '<br><span class="duration">Trip duration: ' + Math.floor(data.duration / 60) + ' min 🚴 </span>' + tripInstructions;
-    };
-  };
-  req.send();
-};
-
-map.on('load', function () {
-  // make an initial directions request that
-  // starts and ends at the same location
-  getRoute(start);
-
-  // Add destination to the map
-  map.addLayer({
-    "id": "point",
-    "type": "circle",
-    "source": {
-      "type": "geojson",
-      "data": {
-        "type": "FeatureCollection",
-        "features": [{
-          "type": "Feature",
-          "properties": {},
-          "geometry": {
-            "type": "Point",
-            "coordinates": start
-          }
-        }
-        ]
-      }
-    },
-    "paint": {
-      "circle-radius": 10,
-      "circle-color": "#3887be"
-    }
-  });
-
-  // allow the user to click the map to change the destination
-  map.on('click', function (e) {
-    var coordsObj = e.lngLat;
-    canvas.style.cursor = '';
-    var coords = Object.keys(coordsObj).map(function (key) { return coordsObj[key]; });
-    var end = {
-      "type": "FeatureCollection",
-      "features": [{
-        "type": "Feature",
-        "properties": {},
-        "geometry": {
-          "type": "Point",
-          "coordinates": coords
-        }
-      }
-      ]
-    };
-    if (map.getLayer('end')) {
-      map.getSource('end').setData(end);
-    } else {
+      })
+      // display start point
       map.addLayer({
-        "id": "end",
-        "type": "circle",
-        "source": {
-          "type": "geojson",
-          "data": {
-            "type": "FeatureCollection",
-            "features": [{
-              "type": "Feature",
-              "properties": {},
-              "geometry": {
-                "type": "Point",
-                "coordinates": coords
+        id: 'start',
+        type: 'circle',
+        source: {
+          type: 'geojson',
+          data: {
+            type: 'FeatureCollection',
+            features: [{
+              type: 'Feature',
+              properties: {},
+              geometry: {
+                type: 'Point',
+                coordinates: myStart
               }
             }
             ]
           }
         },
-        "paint": {
-          "circle-radius": 10,
-          "circle-color": "#f30"
+        paint: {
+          'circle-radius': 10,
+          'circle-color': '#13a513'
+        }
+      })
+      // display end point
+      map.addLayer({
+        id: 'end',
+        type: 'circle',
+        source: {
+          type: 'geojson',
+          data: {
+            type: 'FeatureCollection',
+            features: [{
+              type: 'Feature',
+              properties: {},
+              geometry: {
+                type: 'Point',
+                coordinates: myEnd
+              }
+            }
+            ]
+          }
+        },
+        paint: {
+          'circle-radius': 10,
+          'circle-color': '#ff0000'
         }
       });
-    };
-    getRoute(coords);
-  });
-});
+      // TODO: add layer with current locations of others
+      // show my current location
+      // navigator.geolocation.getCurrentPosition((coordinates) => {
+      //   // form GeoJson for current location
+      //   let positionJson = {
+      //     "geometry": {
+      //       "type": "Point",
+      //       "coordinates": [coordinates.coords.longitude, coordinates.coords.latitude]
+      //     },
+      //     "type": "Feature",
+      //     "properties": {}
+      //   }
+      //   // show on the map
+      //   map.loadImage("https://res.cloudinary.com/diciu4xpu/image/upload/v1551461746/chaserz/marker_v2.png", function (error, image) { //this is where we load the image file
+      //     if (error) throw error;
+      //     map.addImage("custom-marker", image); //this is where we name the image file we are loading
+      //     map.addLayer({
+      //       'id': "markers", //this is the name of the layer, it is what we will reference below
+      //       'type': "symbol",
+      //       'source': { //now we are adding the source to the layer more directly and cleanly
+      //         type: "geojson",
+      //         data: positionJson // CHANGE THIS TO REFLECT WHERE YOUR DATA IS COMING FROM
+      //       },
+      //       'layout': {
+      //         "icon-image": "custom-marker", // the name of image file we used above
+      //         "icon-allow-overlap": false,
+      //         "icon-size": 0.2 //this is a multiplier applied to the standard size. So if you want it half the size put ".5"
+      //       }
+      //     })
+      //   })
+      // })
+      // changer
+      let counter = 0
+      setInterval(() => {
+// process
+        navigator.geolocation.getCurrentPosition((coordinates) => {
+          // form GeoJson for current location
+          let positionJson = {
+            "geometry": {
+              "type": "Point",
+              "coordinates": [coordinates.coords.longitude, coordinates.coords.latitude]
+            },
+            "type": "Feature",
+            "properties": {}
+          }
+          // show on the map
+          // check if exists and clear it
+          if (map.getSource('markers')) {
+            map.getSource('markers').setData(positionJson);
+          }
+          // or create new
+          else {
+          map.loadImage("https://res.cloudinary.com/diciu4xpu/image/upload/v1551461746/chaserz/marker_v2.png", function (error, image) { //this is where we load the image file
+            if (error) throw error;
+            map.addImage("custom-marker", image); //this is where we name the image file we are loading
+            map.addLayer({
+              'id': "markers", //this is the name of the layer, it is what we will reference below
+              'type': "symbol",
+              'source': { //now we are adding the source to the layer more directly and cleanly
+                type: "geojson",
+                data: positionJson // CHANGE THIS TO REFLECT WHERE YOUR DATA IS COMING FROM
+              },
+              'layout': {
+                "icon-image": "custom-marker", // the name of image file we used above
+                "icon-allow-overlap": false,
+                "icon-size": 0.2 //this is a multiplier applied to the standard size. So if you want it half the size put ".5"
+              }
+            })
+          })
+        }
+          counter += 1
+          console.log(`Location requested ${counter} times`)
+          console.log(positionJson)
+        })
+// end of process
+
+      }, 500);
+    })
+  })

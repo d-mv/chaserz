@@ -28,7 +28,8 @@ class RacesController < ApplicationController
   end
 
   def map
-    
+    location = params[:location]
+    @location = location.split(',').map {|el| el.to_f}
   end
 
   private
