@@ -10,6 +10,7 @@
   transition-duration: 0.7s;
   cursor: pointer;
   white-space: nowrap;
+  align-self: center;
   &:hover {
     border-bottom: 3px solid $orange-accent;
     transform: scale(1.05)
