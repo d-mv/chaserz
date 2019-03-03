@@ -10,17 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_24_134248) do
+ActiveRecord::Schema.define(version: 2019_03_03_153155) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "checkpoints", force: :cascade do |t|
     t.bigint "race_id"
-    t.float "lat"
-    t.float "lon"
+    t.string "location"
+    t.float "latitude"
+    t.float "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "position"
     t.index ["race_id"], name: "index_checkpoints_on_race_id"
   end
 

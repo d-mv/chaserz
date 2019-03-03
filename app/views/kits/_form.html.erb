@@ -1,8 +1,8 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-4 col-sm-offset-4">
-
-
+<div class='desktop-wrapper'>
+  <%= render 'shared/desktop' %>
+</div>
+<div class='mobile-wrapper'>
+  <div class='mobile-container'>
 <%= simple_form_for @kit do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
@@ -45,5 +45,4 @@
 
     </div>
   </div>
-</div>
 
