@@ -27,11 +27,11 @@ end
 
   resources :races do
     resources :locations, only: %i[create]
-    resources :checkpoints, only: %i[create]
+    #resources :checkpoints, only: %i[create]
     resources :participants, only: %i[create]
   end
 
-  resources :checkpoints, only: %i[update destroy]
+  #resources :checkpoints, only: %i[update destroy]
   resources :participants, only: %i[update destroy]
   resources :locations, only: %i[update destroy]
 end

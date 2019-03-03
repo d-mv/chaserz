@@ -12,10 +12,16 @@ const ranksRows = document.getElementsByClassName('ranks-table')
 const raceCards = document.getElementsByClassName('race-card')
 const raceAvatars = document.getElementsByClassName('race-show-avatar')
 const startRace = document.getElementsByClassName('start-race')
+const create = document.getElementsByClassName('create')
 
 Array.from(startRace).forEach((button) => {
   button.addEventListener('click', event => {
     window.location.href = `/map?race=${raceId}&location=${myPosition}`
+  })
+})
+Array.from(create).forEach((button) => {
+  button.addEventListener('click', event => {
+    window.location.href = `/races/new`
   })
 })
 

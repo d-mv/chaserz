@@ -1,7 +1,13 @@
 import "bootstrap";
+import 'cocoon-js';
+import 'mapbox-gl/dist/mapbox-gl.css';
 import './buttons';
 import './body';
 // import './map';
 import './map-dev';
-// import '../components/message-form';
+import { initAutocomplete } from './init_autocomplete'
 import '../components/messages.js';
+
+initAutocomplete();
+
+

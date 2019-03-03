@@ -1,0 +1,33 @@
+<div class='desktop-wrapper'>
+  <%= render 'shared/desktop' %>
+</div>
+<div class='mobile-wrapper'>
+  <div class='mobile-container'>
+
+
+<%= simple_form_for @race do |form| %>
+  <%= form.input :title,label: 'TITLE', label_html: { class: 'text form-label' },
+        input_html: {class: 'text form-field', autocomplete: "title" }%>
+  <%= form.input :start_date,label: 'START DATE', label_html: { class: 'text form-label' },
+        input_html: {class: 'text form-field', autocomplete: "start date" }%>
+
+
+  <%= form.input :category, label: 'CATEGORY', label_html: { class: 'text form-label' },
+        input_html: {class: 'text form-field', autocomplete: "category" } %>
+
+
+  <h3 class="white">Checkpoints</h3>
+  <div id="checkpoints">
+    <%= form.simple_fields_for :checkpoints do |checkpoint| %>
+      <%= render 'checkpoint_fields', form: checkpoint %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association 'add checkpoint', form, :checkpoints, form_name: 'form', class: 'text form-link' %>
+    </div>
+  </div>
+
+  <%= form.button :submit, class: "menu-b btn-main text" %>
+<% end %>
+
+</div>
+</div>

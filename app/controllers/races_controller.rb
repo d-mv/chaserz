@@ -23,7 +23,7 @@ class RacesController < ApplicationController
     end
     @locations = []
     Checkpoint.where(race_id: @race.id).each do |checkpoint|
-      @locations << coordinates_to_text(checkpoint.lat, checkpoint.lon)
+      @locations << coordinates_to_text(checkpoint.latitude, checkpoint.longitude)
     end
   end
 
@@ -36,9 +36,28 @@ class RacesController < ApplicationController
     race_checkpoints.each { |el| @race_checkpoints << [el.lon, el.lat] }
   end
 
+  def new
+    @race = Race.new
+    @race.checkpoints.build
+  end
+
+  def create
+    @race = Race.new(race_params)
+    @race.user = current_user
+    if @race.save
+      redirect_to races_path
+    else
+      render :new
+    end
+  end
+
   private
 
-  def coordinates_to_text(_lat, _lon)
+  def race_params
+    params.require(:race).permit(:title, :category, :start_date, checkpoints_attributes: [:id, :position, :location, :_destroy])
+  end
+
+  def coordinates_to_text(lat, lon)
     # request = "#{lon},#{lat}"
     # url1 = 'https://api.mapbox.com/geocoding/v5/mapbox.places/'
     # url2 = '.json?access_token=pk.eyJ1IjoiZC1tdiIsImEiOiJjanJzenJ0aGkwanh4NDNtaXd2MXl6anVlIn0.2VkrtPiDn08qMZXGhSZfAg'
