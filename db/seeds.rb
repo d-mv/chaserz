@@ -105,23 +105,39 @@ Race.all.each do |rce|
   print '.'.green
   Checkpoint.create!(
   race_id: rce.id,
-  lon: 34.769618,
-  lat: 32.084481,
+  lon: 34.766921,
+  lat: 32.078592,
+  position: 1
   )
   Checkpoint.create!(
   race_id: rce.id,
-  lon: 34.768127,
-  lat: 32.082198,
+  lon: 34.767746,
+  lat: 32.082028,
+  position: 2
   )
   Checkpoint.create!(
   race_id: rce.id,
-  lon: 34.766925,
-  lat: 32.078598,
+  lon: 34.766858,
+  lat: 32.079319,
+  position: 3
   )
   Checkpoint.create!(
   race_id: rce.id,
-  lon: 34.767925,
+  lon:  34.766118,
   lat: 32.078698,
+  position: 4
+  )
+  Checkpoint.create!(
+  race_id: rce.id,
+  lon: 34.765544,
+  lat: 32.075341,
+  position: 5
+  )
+  Checkpoint.create!(
+  race_id: rce.id,
+  lon: 34.762714,
+  lat: 32.067418,
+  position: 6
   )
   end
 puts 'done'.blue

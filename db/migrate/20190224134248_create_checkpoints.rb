@@ -4,6 +4,8 @@ class CreateCheckpoints < ActiveRecord::Migration[5.2]
       t.references :race, foreign_key: true
       t.float :lat
       t.float :lon
+      t.integer :position
+      t.string :location
 
       t.timestamps
     end

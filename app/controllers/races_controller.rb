@@ -28,18 +28,23 @@ class RacesController < ApplicationController
   end
 
   def map
-    location = params[:location]
-    @location = location.split(',').map {|el| el.to_f}
+    race = Race.find(params[:race])
+    race_checkpoints = race.checkpoints.order(position: :asc)
+    @race_checkpoints = []
+    location = params[:location].split(',').map(&:to_f)
+    @race_checkpoints << location
+    race_checkpoints.each { |el| @race_checkpoints << [el.lon, el.lat] }
   end
 
   private
 
-  def coordinates_to_text(lat, lon)
-    request = "#{lon},#{lat}"
-    url1 = 'https://api.mapbox.com/geocoding/v5/mapbox.places/'
-    url2 = '.json?access_token=pk.eyJ1IjoiZC1tdiIsImEiOiJjanJzenJ0aGkwanh4NDNtaXd2MXl6anVlIn0.2VkrtPiDn08qMZXGhSZfAg'
-    url = "#{url1}#{request}#{url2}"
-    response = JSON.parse(open(url).read)
-    response['features'][0]['text']
+  def coordinates_to_text(_lat, _lon)
+    # request = "#{lon},#{lat}"
+    # url1 = 'https://api.mapbox.com/geocoding/v5/mapbox.places/'
+    # url2 = '.json?access_token=pk.eyJ1IjoiZC1tdiIsImEiOiJjanJzenJ0aGkwanh4NDNtaXd2MXl6anVlIn0.2VkrtPiDn08qMZXGhSZfAg'
+    # url = "#{url1}#{request}#{url2}"
+    # response = JSON.parse(open(url).read)
+    # response['features'][0]['text']
+    return ''
   end
 end
