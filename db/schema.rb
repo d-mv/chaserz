@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 2019_02_24_134248) do
     t.bigint "race_id"
     t.float "lat"
     t.float "lon"
+    t.integer "position"
+    t.string "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["race_id"], name: "index_checkpoints_on_race_id"

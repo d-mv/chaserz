@@ -53,3 +53,24 @@
     width: 100%
   }
 }
+
+.typewriter {
+  overflow: hidden;
+  white-space: nowrap;
+  padding-left: 10px;
+  animation: typing 3.5s steps(40, end)
+}
+
+.typewriter-fast {
+  overflow: hidden;
+  white-space: nowrap;
+  padding-left: 10px;
+  animation: typing 2s steps(40, end)
+}
+
+.typewriter-fast-minus {
+  overflow: hidden;
+  white-space: nowrap;
+  padding-left: 10px;
+  animation: typing 2.3s steps(40, end)
+}

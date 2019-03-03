@@ -16,3 +16,26 @@ body {
   -o-background-size: cover;
   background-size: cover;
 }
+
+.land-mobile-back {
+  background: url('https://res.cloudinary.com/diciu4xpu/image/upload/v1551602311/chaserz/chaserz_background.jpg') no-repeat center center fixed;
+  height: 100vh;
+  width: 100vw;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.land-mobile-back-filter {
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9), black, black, black, black, black, black, black, black, black) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  display: flex;
+  align-content: flex-end;
+  justify-content: center;
+}
