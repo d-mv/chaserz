@@ -21,10 +21,8 @@ ActiveRecord::Schema.define(version: 2019_03_03_153155) do
     t.float "longitude"
     t.integer "position"
     t.string "location"
-
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "position"
     t.index ["race_id"], name: "index_checkpoints_on_race_id"
   end
 

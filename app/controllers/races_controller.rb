@@ -33,7 +33,7 @@ class RacesController < ApplicationController
     @race_checkpoints = []
     location = params[:location].split(',').map(&:to_f)
     @race_checkpoints << location
-    race_checkpoints.each { |el| @race_checkpoints << [el.lon, el.lat] }
+    race_checkpoints.each { |el| @race_checkpoints << [el.longitude, el.latitude] }
   end
 
   def new
