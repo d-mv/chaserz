@@ -28,8 +28,8 @@ class RacesController < ApplicationController
   end
 
   def map
-    race = Race.find(params[:race])
-    race_checkpoints = race.checkpoints.order(position: :asc)
+    @race = Race.find(params[:race])
+    race_checkpoints = @race.checkpoints.order(position: :asc)
     @race_checkpoints = []
     location = params[:location].split(',').map(&:to_f)
     @race_checkpoints << location
