@@ -16,7 +16,7 @@ const create = document.getElementsByClassName('create')
 
 Array.from(startRace).forEach((button) => {
   button.addEventListener('click', event => {
-    window.location.href = `/map?location=${position}`
+    window.location.href = `/map?race=${raceId}&location=${myPosition}`
   })
 })
 Array.from(create).forEach((button) => {

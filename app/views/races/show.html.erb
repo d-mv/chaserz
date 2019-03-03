@@ -49,12 +49,12 @@
   const right = document.getElementById('right')
   const left = document.getElementById('left')
 
+  const raceId = <%= @race.id %>
+
   let myPosition = []
-
   const coordinates = pos => {
-    position = [pos.coords.longitude, pos.coords.latitude]
+    myPosition = [pos.coords.longitude, pos.coords.latitude]
   }
-
   navigator.geolocation.getCurrentPosition(coordinates)
 
   right.addEventListener('click', event => {

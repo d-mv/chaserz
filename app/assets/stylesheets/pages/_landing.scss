@@ -1,3 +1,40 @@
+.land-mobile {
+  height: 100%;
+  width: 100%;
+}
+
+.land-mobile-logo {
+  position: absolute;
+  top: 45%;
+  animation: 1s ease-out 0s 1 rotateEks;
+}
+
+.welcome {
+  position: absolute;
+  top: 40%;
+}
+
+.welcome-2 {
+  position: absolute;
+  top: 47%;
+}
+
+.land-buttons-wrapper {
+  position: absolute;
+  top: 64%;
+  display: flex;
+  flex-direction: column;
+  align-content: flex-end;
+  justify-content: flex-end;
+  padding-bottom: 50px;
+  animation: 1s ease-out 0s 1 slideInFromBottom;
+}
+
+.land-button {
+  animation: 1s ease-out 0s 1 rotateEks;
+  box-shadow: $shadow-orange;
+}
+
 .landing-heading {
   height: 10%;
   display: flex;

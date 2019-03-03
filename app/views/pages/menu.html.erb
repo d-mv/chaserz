@@ -2,23 +2,24 @@
   <%= render 'shared/desktop' %>
 </div>
 <div class='mobile-wrapper'>
-  <div class='mobile-container'>
-    <div class='spacer-jmb'></div>
-    <div class="logo text-center"></div>
-    <div class="text t0 white center">
-      WELCOME,<br>CHASER!
-    </div>
-    <div class="menu-buttons text-center">
-      <div class="menu-b landing-button btn-main text races">RACES</div>
-      <div class="menu-b landing-button btn-main text ranks">RANKS</div>
-      <div class='landing-button btn-main text profile'>PROFILE</div>
-      <%= link_to destroy_user_session_path, method: :delete do %>
-        <div class="menu-b landing-button btn-secondary text logout"><%= t(".sign_out", default: "LOG OUT") %>
+  <div class="land-mobile-back">
+    <div class="land-mobile-back-filter">
+      <div class="welcome text t0 white typewriter-fast center">WELCOME,</div>
+      <div class="welcome-2 text t0 white typewriter-fast-minus center">CHASER!</div>
+      <div class="land-buttons-wrapper">
+        <div class='hor'>
+          <div class="button btn-main text races w80 center">RACES</div>
+          <div class="button btn-main text ranks w80 ml20 center">RANKS</div>
         </div>
-      <% end %>
+        <div class='ver'>
+          <div class='button btn-main text profile mt20 w80 center'>PROFILE</div>
+          <%= link_to destroy_user_session_path, method: :delete, class: "button btn-secondary text logout mt20 w80 center" do %>
+            <%= t(".sign_out", default: "LOG OUT") %>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 </div>
 <%# script to set id to body %>
 <script>

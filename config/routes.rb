@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   end
 
 end
+
+  mount ActionCable.server => '/cable'
+
   devise_for :users
 
   get '/menu', to: 'pages#menu'

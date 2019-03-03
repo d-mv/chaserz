@@ -106,26 +106,50 @@ Race.all.each do |rce|
   Checkpoint.create!(
     position: 1,
   race_id: rce.id,
-  longitude: 34.769618,
-  latitude: 32.084481,
+
+  longitude: 34.766921,
+  latitude: 32.078592,
+  position: 1
+
   )
   Checkpoint.create!(
     position: 2,
   race_id: rce.id,
-  longitude: 34.768127,
-  latitude: 32.082198,
+
+  longitude: 34.767746,
+  latitude:  32.082028,
+  position: 2
+
   )
   Checkpoint.create!(
     position: 3,
   race_id: rce.id,
-  longitude: 34.766925,
-  latitude: 32.078598,
+
+  longitude: 34.766858,
+  latitude:  32.079319,
+  position: 3
+
   )
   Checkpoint.create!(
     position: 4,
   race_id: rce.id,
-  longitude: 34.767925,
-  latitude: 32.078698,
+
+  longitude:  34.766118,
+  latitude:  32.078698,
+  position: 4
+  )
+  Checkpoint.create!(
+  race_id: rce.id,
+  longitude: 34.765544,
+  latitude:  32.075341,
+  position: 5
+  )
+  Checkpoint.create!(
+  race_id: rce.id,
+  longitude: 34.762714,
+  latitude:  32.067418,
+  position: 6
+
   )
   end
 puts 'done'.blue

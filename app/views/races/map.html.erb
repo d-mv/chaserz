@@ -17,6 +17,7 @@
 </div>
 
 <script>
-console.log(<%= @location%>)
-const myCenter = [<%= @location[0]%>,<%= @location[1]%>]
+const raceCheckpoints = <%= @race_checkpoints %>
+const raceId = <%= @race.id %>
+const userId = <%= current_user.id %>
 </script>

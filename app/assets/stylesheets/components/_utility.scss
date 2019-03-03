@@ -2,6 +2,10 @@
   margin-top: 20px;
 }
 
+.ml20 {
+  margin-left: 20px;
+}
+
 .my20 {
   margin: 20px 0
 }
@@ -42,4 +46,23 @@
 
 .spacer {
   margin: 20px
+}
+
+.hor {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-content: center;
+}
+
+.ver {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+}
+
+.w80 {
+  width: 150px;
 }

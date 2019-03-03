@@ -28,8 +28,12 @@ class RacesController < ApplicationController
   end
 
   def map
-    location = params[:location]
-    @location = location.split(',').map {|el| el.to_f}
+    @race = Race.find(params[:race])
+    race_checkpoints = @race.checkpoints.order(position: :asc)
+    @race_checkpoints = []
+    location = params[:location].split(',').map(&:to_f)
+    @race_checkpoints << location
+    race_checkpoints.each { |el| @race_checkpoints << [el.lon, el.lat] }
   end
 
   def new
@@ -60,5 +64,6 @@ class RacesController < ApplicationController
     # url = "#{url1}#{request}#{url2}"
     # response = JSON.parse(open(url).read)
     # response['features'][0]['text']
+    return ''
   end
 end

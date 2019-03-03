@@ -127,6 +127,11 @@ agentkeepalive@^2.2.0:
   resolved "https://registry.yarnpkg.com/agentkeepalive/-/agentkeepalive-2.2.0.tgz#c5d1bd4b129008f1163f236f86e5faea2026e2ef"
   integrity sha1-xdG9SxKQCPEWPyNvhuX66iAm4u8=
 
+actioncable@^5.2.2:
+  version "5.2.2"
+  resolved "https://registry.yarnpkg.com/actioncable/-/actioncable-5.2.2.tgz#0ec83195fd363c4d91a2fc19f78e77350aa5caac"
+  integrity sha512-uZveOQ0OL1z8VwYqA84gMMfLMPHpS/GsnodS8oVh1xTUYeMf1L80gAbTVVVVVj84zUf7lOiIZMaiY0IlXNsgiw==
+
 ajv-keywords@^3.1.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-3.4.0.tgz#4b831e7b531415a7cc518cd404e73f6193c6349d"
