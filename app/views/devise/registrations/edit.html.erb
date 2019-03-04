@@ -3,7 +3,7 @@
 </div>
 <div class='mobile-wrapper'>
   <div class='mobile-container'>
-    <h2>Edit <%= resource_name.to_s.humanize %></h2>
+    <h2 class="white">Edit <%= resource_name.to_s.humanize %></h2>
     <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= f.error_notification %>
     <div class="form-inputs">
@@ -58,7 +58,7 @@
       input_html: {class: 'text form-field', autocomplete: "current-password" } %>
     </div>
     <div class="form-actions">
-      <%= f.button :submit, "Update", class:'form-button text' %>
+      <%= f.button :submit, "Update", class:'form-button text'%>
     </div>
     <% end %>
     <div class="form-links">

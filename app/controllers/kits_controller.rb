@@ -14,7 +14,7 @@ class KitsController < ApplicationController
     @kit.user = current_user
 
     if @kit.save!
-      redirect_to root_path ##
+      redirect_to user_path(current_user)
     else
       render :new
     end
@@ -30,7 +30,7 @@ class KitsController < ApplicationController
 
   def update
     if @kit.update(kit_params)
-      redirect_to root_path
+      redirect_to user_path(current_user)
     else
       render :edit
     end

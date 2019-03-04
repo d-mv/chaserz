@@ -6,7 +6,7 @@ import { sendMessage } from '../client/race'
 const mapElement = document.getElementById('map');
 // mapboxKey = mapElement.dataset.mapboxApiKey
 // mapboxgl.accessToken = mapboxKey;
-mapboxgl.accessToken = 'pk.eyJ1IjoiZC1tdiIsImEiOiJjanN0M2o2dW8xa3dtM3pvNjByYnVkc3J0In0.dqfubxZiwxWE4Cv-vjk0pA'
+mapboxgl.accessToken = 'pk.eyJ1IjoiZC1tdiIsImEiOiJjanN0M2o2dW8xa3dtM3pvNjByYnVkc3J0In0.dqfubxZiwxWE4Cv-vjk0pA';
 // start/end
 const myStart = raceCheckpoints[1]
 const myEnd = raceCheckpoints[raceCheckpoints.length - 1]

@@ -14,6 +14,8 @@ const raceAvatars = document.getElementsByClassName('race-show-avatar')
 const startRace = document.getElementsByClassName('start-race')
 const create = document.getElementsByClassName('create')
 
+
+
 Array.from(startRace).forEach((button) => {
   button.addEventListener('click', event => {
     window.location.href = `/map?race=${raceId}&location=${myPosition}`

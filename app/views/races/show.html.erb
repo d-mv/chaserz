@@ -37,7 +37,9 @@
     </div>
     <div class='buttons-wrapper'>
       <div class='button btn-main text grid-button start-race'>START</div>
-      <div class='button btn-main text grid-button races'>APPLY FOR RACE</div>
+<div class='grid-button button ' >
+      <%= button_to 'APPLY NOW', race_participants_path(race_id: @race.id, user_id: current_user.id),{class: "button appc btn-main text white"}%>
+</div>
       <div class='button btn-secondary text grid-button to-races'>go back</div>
     </div>
   </div>
