@@ -19,6 +19,8 @@ end
   get '/ranks', to: 'pages#ranks'
   get '/map', to: 'races#map'
 
+
+
   resources :users, only: %i[show index] do
     resources :kits, only: %i[new create]
   end
