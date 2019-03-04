@@ -36,8 +36,11 @@
       </ul>
     </div>
     <div class='buttons-wrapper'>
+     <% if @applied %>
       <div class='button btn-main text grid-button start-race'>START</div>
+      <% else %>
       <div class='button btn-main text grid-button races'>APPLY FOR RACE</div>
+      <% end %>
       <div class='button btn-secondary text grid-button to-races'>go back</div>
     </div>
   </div>

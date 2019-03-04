@@ -44,13 +44,21 @@ fetch(url)
   .then(response => response.json())
   .then((data) => {
     // choose routes section
+    // console.log(data)
     const routes = data.routes[0]
     // choose route instructions
     const instructions = document.getElementById('instructions');
     // choose route steps
     const steps = routes.legs[0].steps;
-
+    // form instructions
+    var tripInstructions = [];
+    // for (var i = 0; i < steps.length; i++) {
+    //   // TODO: drop the last one/or add turn by turn navigation, based on the geoLocation
+    //   tripInstructions.push('<br><li class="text t5 white">' + steps[i].maneuver.instruction) + '</li>';
+    //   instructions.innerHTML = '<div class="map-instructions text t4 white">Instructions:</div><span class="duration text t6 accent">- race duration: ' + Math.floor(data.duration / 60) + ' min</span>' + tripInstructions + '<div class="map-divider"></div>';
+    // }
     // display the route
+    // console.log(routes.geometry.coordinates)
     map.on('load', function () {
       map.addLayer({
         "id": "route",
@@ -137,6 +145,7 @@ fetch(url)
 
       // TODO: add layer with current locations of others
       // show my current location
+
     })
   })
 
@@ -152,15 +161,6 @@ setInterval(() => {
       "type": "Feature",
       "properties": {}
     }
-
-    // form instructions
-    var tripInstructions = [];
-    // for (var i = 0; i < steps.length; i++) {
-    //   // TODO: drop the last one/or add turn by turn navigation, based on the geoLocation
-    //   tripInstructions.push('<br><li class="text t5 white">' + steps[i].maneuver.instruction) + '</li>';
-    //   instructions.innerHTML = '<div class="map-instructions text t4 white">Instructions:</div><span class="duration text t6 accent">- race duration: ' + Math.floor(data.duration / 60) + ' min</span>' + tripInstructions + '<div class="map-divider"></div>';
-    // }
-
     sendMessage(JSON.stringify([coordinates.coords.longitude, coordinates.coords.latitude]), raceId, userId)
 
     setCallback(message => {
