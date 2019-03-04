@@ -3,6 +3,8 @@ import mapboxgl from 'mapbox-gl';
 import { sendMessage } from '../client/race'
 import { setCallback } from '../client/race'
 
+
+console.log(`My user ID is ${userId}`)
 // set up map API key
 const mapElement = document.getElementById('map');
 mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
@@ -162,6 +164,7 @@ setInterval(() => {
     sendMessage(JSON.stringify([coordinates.coords.longitude, coordinates.coords.latitude]), raceId, userId)
 
     setCallback(message => {
+      console.log(message)
       let racers = JSON.parse(message)
       Object.keys(racers).forEach((key) => {
         if (parseInt(key) != userId) {

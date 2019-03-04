@@ -34,6 +34,8 @@ class RacesController < ApplicationController
     location = params[:location].split(',').map(&:to_f)
     @race_checkpoints << location
     race_checkpoints.each { |el| @race_checkpoints << [el.longitude, el.latitude] }
+    location_history = Location.where(user_id: current_user.id, race_id: params[:race])
+    location_history.delete_all
   end
 
   def new
