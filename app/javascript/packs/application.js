@@ -6,7 +6,7 @@ import './body';
 // import './map';
 import './map-dev';
 import { initAutocomplete } from './init_autocomplete'
-import '../components/messages.js';
+// import '../components/messages.js';
 
 initAutocomplete();
 

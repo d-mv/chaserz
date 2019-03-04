@@ -5,11 +5,7 @@ import { setCallback } from '../client/race'
 
 // set up map API key
 const mapElement = document.getElementById('map');
-console.log(mapElement.dataset.mapboxApiKey)
-// mapboxKey = mapElement.dataset.mapboxApiKey
-// console.log(mapboxKey)
 mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
-// mapboxgl.accessToken = 'pk.eyJ1IjoiZC1tdiIsImEiOiJjanN0M2o2dW8xa3dtM3pvNjByYnVkc3J0In0.dqfubxZiwxWE4Cv-vjk0pA'
 // start/end
 const myStart = raceCheckpoints[1]
 const myEnd = raceCheckpoints[raceCheckpoints.length - 1]
@@ -40,19 +36,13 @@ raceCheckpoints.forEach((checkpoint, index) => {
   }
 })
 url += '?steps=true&geometries=geojson&access_token=' + mapboxgl.accessToken;
-console.log(url)
+
 // request API
-
-
-
-
-// const url2 = 'https://api.mapbox.com/directions/v5/mapbox/walking/34.7690348,32.0761789;34.768286,32.076964;34.768419,32.077628;34.770095,32.076801;34.768505,32.075361;34.769746,32.075204?steps=true&geometries=geojson&access_token=pk.eyJ1IjoiZC1tdiIsImEiOiJjanNvYmdndTIwajNnM3lvNDl5ZG82aG8xIn0.N0NV8g7WfsBbJMcYlg7uvQ'
-// url = ''
 fetch(url)
   .then(response => response.json())
   .then((data) => {
     // choose routes section
-    console.log(data)
+    // console.log(data)
     const routes = data.routes[0]
     // choose route instructions
     const instructions = document.getElementById('instructions');
@@ -66,7 +56,7 @@ fetch(url)
     //   instructions.innerHTML = '<div class="map-instructions text t4 white">Instructions:</div><span class="duration text t6 accent">- race duration: ' + Math.floor(data.duration / 60) + ' min</span>' + tripInstructions + '<div class="map-divider"></div>';
     // }
     // display the route
-    console.log(routes.geometry.coordinates)
+    // console.log(routes.geometry.coordinates)
     map.on('load', function () {
       map.addLayer({
         "id": "route",
@@ -170,16 +160,62 @@ setInterval(() => {
       "properties": {}
     }
     sendMessage(JSON.stringify([coordinates.coords.longitude, coordinates.coords.latitude]), raceId, userId)
+
+    setCallback(message => {
+      let racers = JSON.parse(message)
+      Object.keys(racers).forEach((key) => {
+        if (parseInt(key) != userId) {
+          // create json for this racer
+          let racerJson = {
+            "geometry": {
+              "type": "Point",
+              "coordinates": [racers[key][0], racers[key][1]]
+            },
+            "type": "Feature",
+            "properties": {}
+          }
+          // check if layer exists
+          if (map.getLayer(`racer-${key}`)) {
+            map.getSource(`racer-${key}`).setData(racerJson);
+            console.log('racer layer is there')
+          } else if (map.getLayer(`racer-${key}`) === undefined)
+          {
+            console.log('need to create new racer layer')
+            map.loadImage("https://res.cloudinary.com/diciu4xpu/image/upload/v1551694060/chaserz/scooter.png", function (error, image) { //this is where we load the image file
+              if (error) throw error;
+              if (map.hasImage(`racer-${key}-marker`)) { map.removeImage(`racer-${key}-marker`)}
+              map.addImage(`racer-${key}-marker`, image); //this is where we name the image file we are loading
+              map.addLayer({
+                'id': `racer-${key}`,
+                'type': 'symbol',
+                'source': {
+                  type: 'geojson',
+                  data: racerJson
+                },
+                'layout': {
+                  "icon-image": `racer-${key}-marker`, // the name of image file we used above
+                  "icon-allow-overlap": false,
+                  "icon-size": 0.3 //this is a multiplier applied to the standard size. So if you want it half the size put ".5"
+                }
+              })
+            })
+          }
+        }
+      })
+    })
     // show on the map
     // check if exists and clear it
-    if (map.getSource('user')) {
+    if (map.getLayer('user')) {
       map.getSource('user').setData(positionJson);
       console.log('layer user is there')
     }
-    // or create new
-    else {
+    else if (map.getLayer(`user`) === undefined)
+    {
+      console.log('need to create new')
+    //   console.log('layer user is new')
       map.loadImage("https://res.cloudinary.com/diciu4xpu/image/upload/v1551461746/chaserz/marker_v2.png", function (error, image) { //this is where we load the image file
         if (error) throw error;
+      if (map.hasImage(`custom-marker`)) { map.removeImage(`custom-marker`) }
         map.addImage("custom-marker", image); //this is where we name the image file we are loading
         map.addLayer({
           'id': "user", //this is the name of the layer, it is what we will reference below
@@ -199,46 +235,5 @@ setInterval(() => {
   })
   // end of process
   // other racers
-  setCallback(message => {
-    let racers = JSON.parse(message)
-    Object.keys(racers).forEach((key) => {
-      if (parseInt(key) != userId) {
-        // console.log(`RACER-ID: ${key}`)
-        let racerJson = {
-          "geometry": {
-            "type": "Point",
-            "coordinates": [racers[key][0], racers[key][1]]
-          },
-          "type": "Feature",
-          "properties": {}
-        }
-        // console.log(map.getSource(`racer-${key}`))
-        if (map.getSource(`racer-${key}`)) {
-          map.getSource(`racer-${key}`).setData(racerJson);
-          console.log('layer is there')
-          // map.remove(`racer-${key}`)
-        }
-        // or create new
-        else {
-          map.loadImage("https://res.cloudinary.com/diciu4xpu/image/upload/v1551694060/chaserz/scooter.png", function (error, image) { //this is where we load the image file
-            if (error) throw error;
-            map.addImage(`racer-${key}-marker`, image); //this is where we name the image file we are loading
-            map.addLayer({
-              'id': `racer-${key}`,
-              'type': 'symbol',
-              'source': {
-                type: 'geojson',
-                data: racerJson
-              },
-              'layout': {
-                "icon-image": `racer-${key}-marker`, // the name of image file we used above
-                "icon-allow-overlap": false,
-                "icon-size": 0.3 //this is a multiplier applied to the standard size. So if you want it half the size put ".5"
-              }
-            })
-          })
-        }
-      }
-    })
-  })
+
 }, 100);

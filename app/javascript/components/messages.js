@@ -7,4 +7,3 @@ setCallback(message => {
   racers = message
 
 })
-console.log(racers)
