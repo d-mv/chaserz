@@ -1,3 +1,9 @@
 import {setCallback} from '../client/race'
 
-setCallback(message => console.log(`SERVER: ${message}`))
+let racers = {}
+
+setCallback(message => {
+  // console.log(`SERVER: ${message}, IAM: ${userId}`)
+  racers = message
+
+})

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_scope :user do
       authenticated :user do
         root :to => 'pages#menu'
+        mount Sidekiq::Web => '/sidekiq'
       end
 
   unauthenticated :user do

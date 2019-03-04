@@ -5,6 +5,8 @@ class UsersController < ApplicationController
     @kit = Kit.where(user_id: current_user.id)
   end
 
+  private
+
   def set_user
     @user = User.find(params[:id]) if params[:id].to_i.class == Integer
   end

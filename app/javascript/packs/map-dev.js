@@ -1,12 +1,13 @@
 import mapboxgl from 'mapbox-gl';
 
 import { sendMessage } from '../client/race'
+import { setCallback } from '../client/race'
 
 // set up map API key
 const mapElement = document.getElementById('map');
-// mapboxKey = mapElement.dataset.mapboxApiKey
-// mapboxgl.accessToken = mapboxKey;
-mapboxgl.accessToken = 'pk.eyJ1IjoiZC1tdiIsImEiOiJjanN0M2o2dW8xa3dtM3pvNjByYnVkc3J0In0.dqfubxZiwxWE4Cv-vjk0pA';
+
+mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
+
 // start/end
 const myStart = raceCheckpoints[1]
 const myEnd = raceCheckpoints[raceCheckpoints.length - 1]
@@ -37,18 +38,13 @@ raceCheckpoints.forEach((checkpoint, index) => {
   }
 })
 url += '?steps=true&geometries=geojson&access_token=' + mapboxgl.accessToken;
-console.log(url)
+
 // request API
-
-
-
-
-// const url2 = 'https://api.mapbox.com/directions/v5/mapbox/walking/34.7690348,32.0761789;34.768286,32.076964;34.768419,32.077628;34.770095,32.076801;34.768505,32.075361;34.769746,32.075204?steps=true&geometries=geojson&access_token=pk.eyJ1IjoiZC1tdiIsImEiOiJjanNvYmdndTIwajNnM3lvNDl5ZG82aG8xIn0.N0NV8g7WfsBbJMcYlg7uvQ'
 fetch(url)
   .then(response => response.json())
   .then((data) => {
     // choose routes section
-    console.log(data)
+    // console.log(data)
     const routes = data.routes[0]
     // choose route instructions
     const instructions = document.getElementById('instructions');
@@ -56,13 +52,13 @@ fetch(url)
     const steps = routes.legs[0].steps;
     // form instructions
     var tripInstructions = [];
-    for (var i = 0; i < steps.length; i++) {
-      // TODO: drop the last one/or add turn by turn navigation, based on the geoLocation
-      tripInstructions.push('<br><li class="text t5 white">' + steps[i].maneuver.instruction) + '</li>';
-      instructions.innerHTML = '<div class="map-instructions text t4 white">Instructions:</div><span class="duration text t6 accent">- race duration: ' + Math.floor(data.duration / 60) + ' min</span>' + tripInstructions + '<div class="map-divider"></div>';
-    }
+    // for (var i = 0; i < steps.length; i++) {
+    //   // TODO: drop the last one/or add turn by turn navigation, based on the geoLocation
+    //   tripInstructions.push('<br><li class="text t5 white">' + steps[i].maneuver.instruction) + '</li>';
+    //   instructions.innerHTML = '<div class="map-instructions text t4 white">Instructions:</div><span class="duration text t6 accent">- race duration: ' + Math.floor(data.duration / 60) + ' min</span>' + tripInstructions + '<div class="map-divider"></div>';
+    // }
     // display the route
-    console.log(routes.geometry.coordinates)
+    // console.log(routes.geometry.coordinates)
     map.on('load', function () {
       map.addLayer({
         "id": "route",
@@ -146,52 +142,102 @@ fetch(url)
           zoom: 18
         })
       }, 1000)
-      // map.flyTo({
-      //   center: myStart,
-      //   zoom: 18
-      // });
+
       // TODO: add layer with current locations of others
       // show my current location
-      setInterval(() => {
-        // process
-        navigator.geolocation.getCurrentPosition((coordinates) => {
-          // form GeoJson for current location
-          let positionJson = {
+
+    })
+  })
+
+setInterval(() => {
+  // process
+  navigator.geolocation.getCurrentPosition((coordinates) => {
+    // form GeoJson for current location
+    let positionJson = {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [coordinates.coords.longitude, coordinates.coords.latitude]
+      },
+      "type": "Feature",
+      "properties": {}
+    }
+    sendMessage(JSON.stringify([coordinates.coords.longitude, coordinates.coords.latitude]), raceId, userId)
+
+    setCallback(message => {
+      let racers = JSON.parse(message)
+      Object.keys(racers).forEach((key) => {
+        if (parseInt(key) != userId) {
+          // create json for this racer
+          let racerJson = {
             "geometry": {
               "type": "Point",
-              "coordinates": [coordinates.coords.longitude, coordinates.coords.latitude]
+              "coordinates": [racers[key][0], racers[key][1]]
             },
             "type": "Feature",
             "properties": {}
           }
-          sendMessage(JSON.stringify([coordinates.coords.longitude, coordinates.coords.latitude]), raceId, userId)
-          // show on the map
-          // check if exists and clear it
-          if (map.getSource('markers')) {
-            map.getSource('markers').setData(positionJson);
-          }
-          // or create new
-          else {
-            map.loadImage("https://res.cloudinary.com/diciu4xpu/image/upload/v1551461746/chaserz/marker_v2.png", function (error, image) { //this is where we load the image file
+          // check if layer exists
+          if (map.getLayer(`racer-${key}`)) {
+            map.getSource(`racer-${key}`).setData(racerJson);
+            console.log('racer layer is there')
+          } else if (map.getLayer(`racer-${key}`) === undefined)
+          {
+            console.log('need to create new racer layer')
+            map.loadImage("https://res.cloudinary.com/diciu4xpu/image/upload/v1551694060/chaserz/scooter.png", function (error, image) { //this is where we load the image file
               if (error) throw error;
-              map.addImage("custom-marker", image); //this is where we name the image file we are loading
+              if (map.hasImage(`racer-${key}-marker`)) { map.removeImage(`racer-${key}-marker`)}
+              map.addImage(`racer-${key}-marker`, image); //this is where we name the image file we are loading
               map.addLayer({
-                'id': "markers", //this is the name of the layer, it is what we will reference below
-                'type': "symbol",
-                'source': { //now we are adding the source to the layer more directly and cleanly
-                  type: "geojson",
-                  data: positionJson // CHANGE THIS TO REFLECT WHERE YOUR DATA IS COMING FROM
+                'id': `racer-${key}`,
+                'type': 'symbol',
+                'source': {
+                  type: 'geojson',
+                  data: racerJson
                 },
                 'layout': {
-                  "icon-image": "custom-marker", // the name of image file we used above
+                  "icon-image": `racer-${key}-marker`, // the name of image file we used above
                   "icon-allow-overlap": false,
-                  "icon-size": 0.2 //this is a multiplier applied to the standard size. So if you want it half the size put ".5"
+                  "icon-size": 0.3 //this is a multiplier applied to the standard size. So if you want it half the size put ".5"
                 }
               })
             })
           }
-        })
-        // end of process
-      }, 500);
+        }
+      })
     })
+
+    // show on the map
+    // check if exists and clear it
+    if (map.getLayer('user')) {
+      map.getSource('user').setData(positionJson);
+      console.log('layer user is there')
+    }
+    else if (map.getLayer(`user`) === undefined)
+    {
+      console.log('need to create new')
+    //   console.log('layer user is new')
+      map.loadImage("https://res.cloudinary.com/diciu4xpu/image/upload/v1551461746/chaserz/marker_v2.png", function (error, image) { //this is where we load the image file
+        if (error) throw error;
+      if (map.hasImage(`custom-marker`)) { map.removeImage(`custom-marker`) }
+        map.addImage("custom-marker", image); //this is where we name the image file we are loading
+        map.addLayer({
+          'id': "user", //this is the name of the layer, it is what we will reference below
+          'type': "symbol",
+          'source': { //now we are adding the source to the layer more directly and cleanly
+            type: "geojson",
+            data: positionJson // CHANGE THIS TO REFLECT WHERE YOUR DATA IS COMING FROM
+          },
+          'layout': {
+            "icon-image": "custom-marker", // the name of image file we used above
+            "icon-allow-overlap": false,
+            "icon-size": 0.2 //this is a multiplier applied to the standard size. So if you want it half the size put ".5"
+          }
+        })
+      })
+    }
   })
+  // end of process
+  // other racers
+
+}, 100);
+
