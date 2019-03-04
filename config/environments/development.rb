@@ -16,6 +16,7 @@ Rails.application.configure do
   config.consider_all_requests_local = true
 
   config.action_cable.url = 'ws://localhost:3000/cable'
+  # config.action_cable.url = 'ws://8a9d23d6.ngrok.io/cable'
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
   if Rails.root.join('tmp', 'caching-dev.txt').exist?
