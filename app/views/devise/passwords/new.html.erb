@@ -3,19 +3,23 @@
 </div>
 <div class='mobile-wrapper'>
   <div class='mobile-container'>
-    <h2>Forgot your password?</h2>
+  <div class='spacer-jmb'></div>
+  <div class='text title center white'>Forgot your password?</div>
     <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
     <%= f.error_notification %>
     <div class="form-inputs">
       <%= f.input :email,
-      required: true,
+
       autofocus: true,
-      input_html: { autocomplete: "email" } %>
+        label: 'EMAIL', label_html: { class: 'text form-label' },
+      input_html: { class: 'text form-field', autocomplete: "email" } %>
     </div>
     <div class="form-actions">
-      <%= f.button :submit, "Send me reset password instructions" %>
+      <%= f.button :submit, "Reset password", class: 'button btn-main text  center' %>
     </div>
     <% end %>
+    <div class='vert center'>
     <%= render "devise/shared/links" %>
+    </div>
   </div>
 </div>

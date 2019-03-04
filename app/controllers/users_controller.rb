@@ -5,6 +5,12 @@ class UsersController < ApplicationController
     @kit = Kit.where(user_id: current_user.id)
   end
 
+
+  def after_update_path_for(resource)
+      # user_path(resource)
+      redirect_to user_path(current_user)
+  end
+
   private
 
   def set_user
