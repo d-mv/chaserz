@@ -15,12 +15,11 @@ class ParticipantsController < ApplicationController
     participant.update(duration: params[:duration], status: 'finished')
     race_status = 0
     participants.each { |part| race_status += 1 if part.status == 'racing' }
-    @message = 'Not everyone has finished' unless race_status.zero?
+    return @status = false unless race_status.zero?
 
-    if race_status.zero?
-      @ranks = participants.order(duration: :desc)
-      @message = 'Race is over'
-    end
+    @ranks = participants.order(duration: :desc)
+    @status = true
+
 
 
 
