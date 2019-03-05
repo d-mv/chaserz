@@ -7,7 +7,7 @@ const toRacesButtons = document.getElementsByClassName('to-races')
 const racesButtons = document.getElementsByClassName('races')
 const ranksButtons = document.getElementsByClassName('ranks')
 const logoutButtons = document.getElementsByClassName('logout')
-const userId = document.querySelector('body').id
+const userId = document.querySelector('body').dataset.user
 const ranksRows = document.getElementsByClassName('ranks-table')
 const raceCards = document.getElementsByClassName('race-card')
 const raceAvatars = document.getElementsByClassName('race-show-avatar')
@@ -104,7 +104,7 @@ Array.from(racesButtons).forEach((button) => {
 Array.from(ranksButtons).forEach((button) => {
   button.addEventListener('click', event => {
     console.log(`Pressed button %c'RANKS'`, 'color: white; background-color: orange; padding: 2px 5px; border-radius: 2px;')
-    window.location.href = `ranks`
+    window.location.href = `/ranks`
   })
 })
 
