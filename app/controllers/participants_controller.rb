@@ -17,17 +17,36 @@ class ParticipantsController < ApplicationController
     participants.each { |part| race_status += 1 if part.status == 'racing' }
     return @status = false unless race_status.zero?
 
-    @ranks = participants.order(duration: :desc)
+    participants.map { |part| part.points = 0 }
+    @ranks = points(participants.order(duration: :asc), params[:race])
     @status = true
+    @ranks.each do |part|
+      points = part.user.points + part.points
+      part.user.update(points: points)
+    end
+  end
 
+  private
 
-
-
-    # t.bigint "user_id"
-    # t.bigint "race_id"
-    # t.integer "duration"
-    # t.integer "points"
-    # t.string "status"
-    # binding.pry
+  def points(participants, race)
+    owner = Race.find(race).user_id
+    participants.map.with_index do |participant, index|
+      if owner == participant.user_id
+        if [1, 2, 3].include?(index)
+          participant.points = 6
+        elsif participant.status == 'finished'
+          participant.points = 4
+        end
+      end
+      if participant.status == 'finished'
+        participant.points = 10 if index.zero?
+        participant.points = 8 if index == 1
+        participant.points = 6 if index == 2
+        participant.points = 2 unless [0, 1, 2].include?(index)
+      else
+        participant.points = 1
+      end
+    end
+    participants
   end
 end

@@ -104,7 +104,7 @@ Array.from(racesButtons).forEach((button) => {
 Array.from(ranksButtons).forEach((button) => {
   button.addEventListener('click', event => {
     console.log(`Pressed button %c'RANKS'`, 'color: white; background-color: orange; padding: 2px 5px; border-radius: 2px;')
-    window.location.href = `ranks`
+    window.location.href = `/ranks`
   })
 })
 

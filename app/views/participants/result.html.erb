@@ -5,9 +5,10 @@
   <% if @status %>
     <div class='mobile-container'>
       <div class='spacer'></div>
-      <div class='text title white center'>RANKS TABLE</div>
+      <div class='text title white center'>RACE RESULT</div>
       <div class='spacer'></div>
       <div class='ranks-table-wrapper'>
+        <% counter = 1 %>
         <% @ranks.each do |user| %>
           <div class='ranks-table' id='<%= user.user.id %>'>
             <div class='ranks-avatar avatar-small-border'>
@@ -15,25 +16,37 @@
             </div>
             <div class='ranks-nickname text t7 white'><%= user.user.nickname %></div>
             <div class='ranks-status text t7 white'><%= 'megastar' %></div>
-            <div class='ranks-points text t6 white'><%= number_with_delimiter(user.user.points, :delimiter => ',') %></div>
+            <div class='ranks-points text t6 white'><%= number_with_delimiter(user.points, :delimiter => ',') %></div>
             <div class='ranks-trophy'>
-              <img src='https://res.cloudinary.com/diciu4xpu/image/upload/v1551267840/chaserz/trophy-basic.png' class='ranks-trophy'>
+              <div class='ranks-points text t6 accent'>
+                <% case counter
+              when 1 %>
+                1<span class='t7'> st</span>
+                <% when 2 %>
+                2<span class='t7'> nd</span>
+                <% when 3 %>
+                3<span class='t7'> st</span>
+              <% else %>
+                <%= counter %><span class='t7'> th</span>
+              <% end %>
             </div>
           </div>
-          <% if (@ranks.size > 1) %>
-            <div class='ranks-divider'></div>
-          <% end %>
+        </div>
+        <% if (@ranks.size > 1) %>
+          <div class='ranks-divider'></div>
         <% end %>
-      </div>
-      <div class='buttons-wrapper'>
-        <div class='button btn-secondary text grid-button to-menu'>go back</div>
-      </div>
+        <% counter += 1 %>
+      <% end %>
     </div>
-  <% else %>
-    <div class='mobile-container'>
-      <div class='text t1 white center mt20'>Your competitors have not yet finished...</div>
-      <div class='text t1 white center mt20'>Please, wait.</div>
-      <div class='text t2 accent center my40'>The page will reload automatically.</div>
+    <div class='buttons-wrapper'>
+      <div class='button btn-secondary text grid-button ranks'>close</div>
     </div>
-  <% end %>
+  </div>
+<% else %>
+  <div class='mobile-container'>
+    <div class='text t1 white center mt20'>Your competitors have not yet finished...</div>
+    <div class='text t1 white center mt20'>Please, wait.</div>
+    <div class='text t2 accent center my40'>The page will reload automatically.</div>
+  </div>
+<% end %>
 </div>
