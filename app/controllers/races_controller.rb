@@ -21,7 +21,6 @@ class RacesController < ApplicationController
         @participants = @race.participants[@start..@start + 4]
       end
     end
-
     @locations = locations(@race.id)
     @applied = true unless Participant.where(user_id: current_user.id, race_id: @race.id).length.zero?
     puts @applied
