@@ -97,7 +97,7 @@ Array.from(racesButtons).forEach((button) => {
     console.log(`Pressed button %c'RACES'`, 'color: white; background-color: orange; padding: 2px 5px; border-radius: 2px;')
     const postButton = new XMLHttpRequest();
     postButton.open("POST", `/race/${button.id}/participants`, true);
-    // window.location.href = 
+    // window.location.href =
   })
 })
 

@@ -19,8 +19,7 @@ end
   get '/menu', to: 'pages#menu'
   get '/ranks', to: 'pages#ranks'
   get '/map', to: 'races#map'
-
-
+  get '/result', to: 'participants#result'
 
   resources :users, only: %i[show index] do
     resources :kits, only: %i[new create]

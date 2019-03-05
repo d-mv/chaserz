@@ -36,6 +36,8 @@ class RacesController < ApplicationController
     race_checkpoints.each { |el| @race_checkpoints << [el.longitude, el.latitude] }
     location_history = Location.where(user_id: current_user.id, race_id: params[:race])
     location_history.delete_all
+    participant = Participant.where(user_id: current_user.id, race_id: @race.id)
+    participant.update(status: 'racing')
   end
 
   def new

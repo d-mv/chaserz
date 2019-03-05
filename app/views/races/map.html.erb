@@ -4,21 +4,30 @@
     <canvas class="mapboxgl-canvas" style="position: absolute; width: 799px; height: 803px;" tabindex="0" aria-label="Map" width="1598" height="1606"></canvas>
   </div>
   <div class="mapboxgl-control-container">
-    <div class="mapboxgl-ctrl-top-left"></div>
-    <div class="mapboxgl-ctrl-top-right"></div>
-    <div class="mapboxgl-ctrl-bottom-left">
-      <div class="mapboxgl-ctrl" style="display: block;"><a class="mapboxgl-ctrl-logo" target="_blank" href="https://www.mapbox.com/" aria-label="Mapbox logo" rel="noopener"></a></div>
-    </div>
   </div>
 </div>
-
-<div id="instructions"><br>
-  <span class="duration"></span><br>
+<div id="instructions">
+  <div class='map-buttons-wrapper'>
+    <div class='button btn-main text grid-button finish-race'>FINISH!</div>
+    <div class='button btn-secondary text grid-button drop-race'>drop it</div>
+  </div>
 </div>
-
 <script>
+  const startTime = Date.now()
   const raceCheckpoints = <%= @race_checkpoints %>
   const raceId = <%= @race.id %>
   document.querySelector('body').id = '<%= current_user.id %>'
- 
+
+
+  const finish = document.getElementsByClassName('finish-race')[0]
+finish.addEventListener('click', event => {
+  navigator.geolocation.getCurrentPosition((coordinates) => {
+  const lon = coordinates.coords.longitude
+  const lat = coordinates.coords.latitude
+    const endTime = Date.now()
+    const duraiton = endTime - startTime
+    window.location.href = `/result?race=${raceId}&location=${lon},${lat}&duration=${duraiton}`})
+})
 </script>
+
+
