@@ -95,7 +95,9 @@ Array.from(toRacesButtons).forEach((button) => {
 Array.from(racesButtons).forEach((button) => {
   button.addEventListener('click', event => {
     console.log(`Pressed button %c'RACES'`, 'color: white; background-color: orange; padding: 2px 5px; border-radius: 2px;')
-    window.location.href = `/races`
+    const postButton = new XMLHttpRequest();
+    postButton.open("POST", `/race/${button.id}/participants`, true);
+    // window.location.href =
   })
 })
 

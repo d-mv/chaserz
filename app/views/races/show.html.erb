@@ -19,10 +19,10 @@
         <i class="fas fa-chevron-left t1 accent left-arrow" id='left'></i>
       </div>
       <% @participants.each do |participant| %>
-      <div class='ranks-avatar avatar-small-border <%=  @participants.length < 5 ? "race-show-avatar-min" : "race-show-avatar"%>'
+        <div class='ranks-avatar avatar-small-border <%=  @participants.length < 5 ? "race-show-avatar-min" : "race-show-avatar"%>'
            id='<%= participant.user_id %>' title='<%= participant.user.nickname %>'>
-        <img src='<%= participant.user.photo %>' class='avatar-small' alt='<%= participant.user.nickname %>'>
-      </div>
+          <img src='<%= participant.user.photo %>' class='avatar-small' alt='<%= participant.user.nickname %>'>
+        </div>
       <% end %>
       <div class='race-show-arrow'>
         <i class="fas fa-chevron-right t1 accent right-arrow" id='right'></i>
@@ -31,15 +31,18 @@
     <div class='race-show-details-wrapper text white'>
       <ul class='race-show-check-list'>
         <% @locations.each do |location| %>
-        <li class='race-show-check-list-item t5'><%=  location %></li>
+          <li class='race-show-check-list-item t5'><%=  location %></li>
         <% end %>
       </ul>
     </div>
     <div class='buttons-wrapper'>
-      <div class='button btn-main text grid-button start-race'>START</div>
-<div class='grid-button button ' >
-      <%= button_to 'APPLY NOW', race_participants_path(race_id: @race.id, user_id: current_user.id),{class: "button appc btn-main text white"}%>
-</div>
+      <% if @applied %>
+        <div class='button btn-main text grid-button start-race'>START</div>
+      <% else %>
+        <div class='form-buttons-wrapper'>
+          <%= button_to 'APPLY NOW', race_participants_path(race_id: @race.id), class: "button btn-main text grid-button apply"%>
+        </div>
+      <% end %>
       <div class='button btn-secondary text grid-button to-races'>go back</div>
     </div>
   </div>
@@ -50,7 +53,7 @@
 
   const right = document.getElementById('right')
   const left = document.getElementById('left')
-
+  
   const raceId = <%= @race.id %>
 
   let myPosition = []

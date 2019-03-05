@@ -21,11 +21,10 @@ class RacesController < ApplicationController
         @participants = @race.participants[@start..@start + 4]
       end
     end
+    @locations = locations(@race.id)
+    @applied = true unless Participant.where(user_id: current_user.id, race_id: @race.id).length.zero?
+    puts @applied
 
-    @locations = []
-    Checkpoint.where(race_id: @race.id).each do |checkpoint|
-      @locations << coordinates_to_text(checkpoint.latitude, checkpoint.longitude)
-    end
   end
 
   def map
@@ -35,6 +34,10 @@ class RacesController < ApplicationController
     location = params[:location].split(',').map(&:to_f)
     @race_checkpoints << location
     race_checkpoints.each { |el| @race_checkpoints << [el.longitude, el.latitude] }
+    location_history = Location.where(user_id: current_user.id, race_id: params[:race])
+    location_history.delete_all
+    participant = Participant.where(user_id: current_user.id, race_id: @race.id)
+    participant.update(status: 'racing')
   end
 
   def new
@@ -66,16 +69,16 @@ class RacesController < ApplicationController
   private
 
   def race_params
-    params.require(:race).permit(:title, :category, :start_date, checkpoints_attributes: [:id, :position, :location, :_destroy])
+    params.require(:race).permit(:title, :category, :start_date, checkpoints_attributes: %i[id position location _destroy])
   end
 
-  def coordinates_to_text(latitude, longitude)
-    # request = "#{lon},#{lat}"
-    # url1 = 'https://api.mapbox.com/geocoding/v5/mapbox.places/'
-    # url2 = '.json?access_token=pk.eyJ1IjoiZC1tdiIsImEiOiJjanJzenJ0aGkwanh4NDNtaXd2MXl6anVlIn0.2VkrtPiDn08qMZXGhSZfAg'
-    # url = "#{url1}#{request}#{url2}"
-    # response = JSON.parse(open(url).read)
-    # response['features'][0]['text']
-    return ''
+
+  def locations(race_id)
+    locations = []
+    Checkpoint.where(race_id: race_id).each do |checkpoint|
+      locations << checkpoint.location
+    end
+    locations
+
   end
 end

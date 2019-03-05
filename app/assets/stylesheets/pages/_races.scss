@@ -45,21 +45,19 @@
   list-style: none;
 }
 
-.race-show-check-list-item {}
-
 .race-card-status {
   position: absolute;
   top: 20px;
   right: 0;
   border-radius: 5px 0 0 5px;
-  padding: 3px 10px 4px 10px;
-  background: $background-dark;
+  padding: 3px 10px 4px 10px; // background: $background-dark;
+  background: $orange-main;
   animation: 1s ease-out 0s 1 rotateEks;
 }
 
 .race-card-when {
   position: absolute;
-  top: 51px;
+  top: 52px;
   right: 0;
   border-radius: 5px 0 0 5px;
   padding: 3px 10px 4px 10px;

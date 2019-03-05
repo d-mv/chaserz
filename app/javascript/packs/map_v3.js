@@ -1,18 +1,18 @@
-// import mapbox js
 import mapboxgl from 'mapbox-gl';
-// import actioncable js
+
 import { sendMessage } from '../client/race'
 import { setCallback } from '../client/race'
-// get userId and display it
-const userId = document.getElementsByTagName('body')[0].id
+
+
 console.log(`My user ID is ${userId}`)
 // set up map API key
 const mapElement = document.getElementById('map');
 mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
-// set start/end
+// start/end
 const myStart = raceCheckpoints[1]
 const myEnd = raceCheckpoints[raceCheckpoints.length - 1]
-// draw map
+
+// drawing map
 const map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/mapbox/dark-v10',
@@ -22,8 +22,9 @@ const map = new mapboxgl.Map({
 // to use touch later
 var canvas = map.getCanvasContainer();
 
-// set bounds for map
-// var bounds = [x,y], [x,y];
+// TODO: calculate below, based on the start/end
+// var bounds = [[parseFloat((myStart[0] + 0.1).toFixed(5)), parseFloat((myStart[1] - 0.1).toFixed(5))], [parseFloat((myEnd[0] - 0.1).toFixed(5)), parseFloat((myEnd[1] + 0.1).toFixed(5))]];
+// console.log(bounds)
 // map.setMaxBounds(bounds);
 
 // form the request to API with start/end coordinates
@@ -43,12 +44,21 @@ fetch(url)
   .then(response => response.json())
   .then((data) => {
     // choose routes section
+    // console.log(data)
     const routes = data.routes[0]
     // choose route instructions
     const instructions = document.getElementById('instructions');
     // choose route steps
     const steps = routes.legs[0].steps;
+    // form instructions
+    var tripInstructions = [];
+    // for (var i = 0; i < steps.length; i++) {
+    //   // TODO: drop the last one/or add turn by turn navigation, based on the geoLocation
+    //   tripInstructions.push('<br><li class="text t5 white">' + steps[i].maneuver.instruction) + '</li>';
+    //   instructions.innerHTML = '<div class="map-instructions text t4 white">Instructions:</div><span class="duration text t6 accent">- race duration: ' + Math.floor(data.duration / 60) + ' min</span>' + tripInstructions + '<div class="map-divider"></div>';
+    // }
     // display the route
+    // console.log(routes.geometry.coordinates)
     map.on('load', function () {
       map.addLayer({
         "id": "route",
@@ -132,6 +142,10 @@ fetch(url)
           zoom: 18
         })
       }, 1000)
+
+      // TODO: add layer with current locations of others
+      // show my current location
+
     })
   })
 
@@ -147,23 +161,10 @@ setInterval(() => {
       "type": "Feature",
       "properties": {}
     }
-    // current location, required to turn by turn navgation
-    // const currentLocation = Math.ceil(coordinates.coords.longitude * 1000000) / 1000000)
-
-    // leg coordinates:
-    // data.routes[0].legs[0].steps[0].geometry.coordinates[0])
-
-    // form instructions
-    // var tripInstructions = [];
-    // for (var i = 0; i < steps.length; i++) {
-
-    //   tripInstructions.push('<br><li class="text t5 white">' + steps[i].maneuver.instruction) + '</li>';
-    //   instructions.innerHTML = '<div class="map-instructions text t4 white">Instructions:</div><span class="duration text t6 accent">- race duration: ' + Math.floor(data.duration / 60) + ' min</span>' + tripInstructions + '<div class="map-divider"></div>';
-    // }
-
     sendMessage(JSON.stringify([coordinates.coords.longitude, coordinates.coords.latitude]), raceId, userId)
 
     setCallback(message => {
+      console.log(message)
       let racers = JSON.parse(message)
       Object.keys(racers).forEach((key) => {
         if (parseInt(key) != userId) {
@@ -179,12 +180,13 @@ setInterval(() => {
           // check if layer exists
           if (map.getLayer(`racer-${key}`)) {
             map.getSource(`racer-${key}`).setData(racerJson);
-            // console.log('racer layer is there')
-          } else if (map.getLayer(`racer-${key}`) === undefined) {
-            // console.log('need to create new racer layer')
+            console.log('racer layer is there')
+          } else if (map.getLayer(`racer-${key}`) === undefined)
+          {
+            console.log('need to create new racer layer')
             map.loadImage("https://res.cloudinary.com/diciu4xpu/image/upload/v1551694060/chaserz/scooter.png", function (error, image) { //this is where we load the image file
               if (error) throw error;
-              if (map.hasImage(`racer-${key}-marker`)) { map.removeImage(`racer-${key}-marker`) }
+              if (map.hasImage(`racer-${key}-marker`)) { map.removeImage(`racer-${key}-marker`)}
               map.addImage(`racer-${key}-marker`, image); //this is where we name the image file we are loading
               map.addLayer({
                 'id': `racer-${key}`,
@@ -204,18 +206,19 @@ setInterval(() => {
         }
       })
     })
-
     // show on the map
     // check if exists and clear it
     if (map.getLayer('user')) {
       map.getSource('user').setData(positionJson);
-      // console.log('layer user is there')
+      console.log('layer user is there')
     }
-    else if (map.getLayer(`user`) === undefined) {
-      // console.log('need to create new')
+    else if (map.getLayer(`user`) === undefined)
+    {
+      console.log('need to create new')
+    //   console.log('layer user is new')
       map.loadImage("https://res.cloudinary.com/diciu4xpu/image/upload/v1551461746/chaserz/marker_v2.png", function (error, image) { //this is where we load the image file
         if (error) throw error;
-        if (map.hasImage(`custom-marker`)) { map.removeImage(`custom-marker`) }
+      if (map.hasImage(`custom-marker`)) { map.removeImage(`custom-marker`) }
         map.addImage("custom-marker", image); //this is where we name the image file we are loading
         map.addLayer({
           'id': "user", //this is the name of the layer, it is what we will reference below

@@ -12,6 +12,7 @@
   cursor: pointer;
   white-space: nowrap;
   align-self: center;
+  border:none;
   &:hover {
     border-bottom: 3px solid $orange-accent;
     transform: scale(1.05)
@@ -62,7 +63,6 @@
   align-content: center;
 }
 
-
-.appc{
-  box-shadow: $background-grey !important;
+.form-buttons-wrapper{
+  margin:0 auto;
 }
