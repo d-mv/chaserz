@@ -7,7 +7,9 @@ import { setCallback } from '../client/race'
 console.log(`My user ID is ${userId}`)
 // set up map API key
 const mapElement = document.getElementById('map');
+
 mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
+
 // start/end
 const myStart = raceCheckpoints[1]
 const myEnd = raceCheckpoints[raceCheckpoints.length - 1]
@@ -206,6 +208,7 @@ setInterval(() => {
         }
       })
     })
+
     // show on the map
     // check if exists and clear it
     if (map.getLayer('user')) {
@@ -240,3 +243,4 @@ setInterval(() => {
   // other racers
 
 }, 100);
+

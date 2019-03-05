@@ -1,11 +1,11 @@
 <div class="form-inline nested-fields">
   <%= form.input :location,label: 'LOCATION', label_html: { class: 'text form-label' },
-        input_html: {class: 'text form-field', autocomplete: "location" }%> %>
+        input_html: {class: 'text form-field', autocomplete: "location" }%>
   <%#= form.input :position, as: :integer %>
   <%= form.input :latitude, label: 'LATITUDE', label_html: { class: 'text form-label' },
-        input_html: {class: 'text form-field', autocomplete: "latitude" }%> %>
+        input_html: {class: 'text form-field', autocomplete: "latitude" }%>
   <%= form.input :longitude, label: 'LONGITUDE', label_html: { class: 'text form-label' },
-        input_html: {class: 'text form-field', autocomplete: "longitude" }%> %>
-   <%= link_to_remove_association "remove checkpoint", form, class: 'text form-link' %>
+        input_html: {class: 'text form-field', autocomplete: "longitude" }%>
+   <%= link_to_remove_association "remove checkpoint", form, class: 'center text form-link' %>
 
 </div>
