@@ -17,7 +17,7 @@ User.destroy_all
 print '.'.red
 puts 'done'.blue
 
-url = "https://uifaces.co/api?random&limit=8"
+url = "https://uifaces.co/api?random&limit=5"
 people = JSON.parse(open(url,"X-API-KEY" => ENV['XAPIKEY']).read)
 # people.map { |person| person['photo']="https://#{person['photo'].split('://')[1]}" }
 
@@ -46,13 +46,13 @@ profile_array = ['Junior Racer', 'Experienced', 'Pro']
 
 print 'creating users'.green
 i = 0
-8.times do
+5.times do
   print '.'.green
 
   user = User.new(
     email: people[i]["email"],
-    first_name:   people[i]["name"],
-    last_name:   Faker::Name.last_name,
+    first_name:  people[i]["name"],
+    last_name: Faker::Name.last_name,
     nickname: Faker::Movies::StarWars.character,
     profile_type: profile_array.sample,
     age: rand(13..40),
@@ -122,22 +122,22 @@ end
 puts 'done'.blue
 
 print 'assigning participants'.green
-Race.all.each do |rce|
-  print '.'.green
-  qty = rand(2..5)
-  users = User.all.sample(qty)
-  counter = 0
-  qty.times do |part|
-   Participant.create!(
-    race_id: rce.id,
-    user_id: users[counter].id,
-    duration: 0,
-    points: 0,
-    status: %w[applied dropped missed].sample,
-   )
-   counter += 1
- end
-end
+# Race.all.each do |rce|
+#   print '.'.green
+#   qty = rand(2..5)
+#   users = User.all.sample(qty)
+#   counter = 0
+#   qty.times do |part|
+#    Participant.create!(
+#     race_id: rce.id,
+#     user_id: users[counter].id,
+#     duration: 0,
+#     points: 0,
+#     status: %w[applied dropped missed].sample,
+#    )
+#    counter += 1
+#  end
+# end
 puts 'done'.blue
 
 print 'creating checkpoints'.green
