@@ -36,7 +36,6 @@ raceCheckpoints.forEach((checkpoint, index) => {
     }
   }
 })
-
 url += '?steps=true&geometries=geojson&access_token=' + mapboxgl.accessToken;
 
 // request API
@@ -123,16 +122,16 @@ fetch(url)
           'circle-color': '#ff0000'
         }
       })
-      map.flyTo({
-        center: myEnd,
-        zoom: 16
-      })
-      setTimeout(() => {
-        map.flyTo({
-          center: myStart,
-          zoom: 16
-        })
-      }, 800)
+      // map.flyTo({
+      //   center: myEnd,
+      //   zoom: 16
+      // })
+      // setTimeout(() => {
+      //   map.flyTo({
+      //     center: myStart,
+      //     zoom: 16
+      //   })
+      // }, 800)
     })
   })
 
@@ -149,10 +148,10 @@ setInterval(() => {
       "properties": {}
     }
 
-    // map.flyTo({
-    //   center: [coordinates.coords.longitude, coordinates.coords.latitude],
-    //   zoom: 18
-    // })
+    map.flyTo({
+      center: [coordinates.coords.longitude, coordinates.coords.latitude],
+      zoom: 18
+    })
     // current location, required to turn by turn navgation
     // const currentLocation = Math.ceil(coordinates.coords.longitude * 1000000) / 1000000)
 
