@@ -1,13 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
-# binding.pry
-
 print '~ destroying'.red
 Race.destroy_all
 print '.'.red
@@ -17,54 +7,53 @@ User.destroy_all
 print '.'.red
 puts 'done'.blue
 
-url = "https://uifaces.co/api?random&limit=8"
+url = "https://uifaces.co/api?random&limit=2"
 people = JSON.parse(open(url,"X-API-KEY" => ENV['XAPIKEY']).read)
 # people.map { |person| person['photo']="https://#{person['photo'].split('://')[1]}" }
 
-print 'creating special users'.green
+print 'creating users'.green
 User.create!(email: 'admin@lewagon.com',first_name: 'Dmitry',last_name: 'Melnikov', nickname: '👨‍💻dima', profile_type: 'Junior Racer', occupation: 'Software engineer', photo:'https://res.cloudinary.com/diciu4xpu/image/upload/v1551801252/chaserz/avatars/dmitry.jpg', password: '123123', points: 100, age: 39, nationality: 'Israel')
 print '.admin.'.green
 
-User.create!(email: 'user@lewagon.com',first_name: 'Roni',last_name: 'Talvi', nickname: 'Roni V', profile_type: 'Junior Racer', occupation: 'Software engineer', photo:'https://res.cloudinary.com/diciu4xpu/image/upload/v1551801252/chaserz/avatars/rony.jpg', password: '123123', points: 200, age: 20, nationality: 'Israel')
+User.create!(email: 'user@lewagon.com',first_name: 'Roni',last_name: 'Talvi', nickname: 'Roni V', profile_type: 'Junior Racer', occupation: 'Software engineer', photo:'https://res.cloudinary.com/diciu4xpu/image/upload/v1551801252/chaserz/avatars/rony.jpg', password: '123123', points: 98, age: 20, nationality: 'Israel')
 print '.user.'.green
 
-User.create!(email: 'ben@lewagon.com',first_name: 'Benjamin',last_name: 'Aronov', nickname: 'Ben', profile_type: 'Star', occupation: 'Software engineer', photo:'https://res.cloudinary.com/diciu4xpu/image/upload/v1551801252/chaserz/avatars/ben.jpg', password: '123123', points: 1200, age: 20, nationality: 'USA')
+User.create!(email: 'ben@lewagon.com',first_name: 'Benjamin',last_name: 'Aronov', nickname: 'Ben', profile_type: 'Star', occupation: 'Software engineer', photo:'https://res.cloudinary.com/diciu4xpu/image/upload/v1551801252/chaserz/avatars/ben.jpg', password: '123123', points: 205, age: 20, nationality: 'USA')
 print '.user.'.green
-puts 'done'.blue
 
-photo_array = [
-'https://randomuser.me/api/portraits/women/63.jpg',
-'https://randomuser.me/api/portraits/men/40.jpg',
-'https://randomuser.me/api/portraits/men/43.jpg',
-'https://randomuser.me/api/portraits/women/95.jpg',
-'https://randomuser.me/api/portraits/women/64.jpg',
-'https://randomuser.me/api/portraits/men/41.jpg',
-'https://randomuser.me/api/portraits/men/42.jpg',
-'https://randomuser.me/api/portraits/women/96.jpg']
+User.create!(email: 'david@lewagon.com',first_name: 'David',last_name: 'Metta', nickname: 'Davo', profile_type: 'Star', occupation: 'Software engineer', photo:'https://res.cloudinary.com/diciu4xpu/image/upload/v1551887892/chaserz/avatars/david.jpg', password: '123123', points: 400, age: 20, nationality: 'USA')
+print '.user.'.green
 
 profile_array = ['Junior Racer', 'Experienced', 'Pro']
 
-print 'creating users'.green
-i = 0
-8.times do
-  print '.'.green
-
-  user = User.new(
-    email: people[i]["email"],
-    first_name:   people[i]["name"],
-    last_name:   Faker::Name.last_name,
-    nickname: Faker::Movies::StarWars.character,
+User.create!(
+    email: 'user_2@lewagon.com',
+    first_name:  'Misty',
+    last_name: 'Miles',
+    nickname: 'Mistery',
     profile_type: profile_array.sample,
     age: rand(13..40),
-    occupation:  people[i]["position"],
+    occupation:  'Enjoying life',
     points: rand(0..100),
     nationality: 'Israel',
-    photo:  photo_array[i],
+    photo:  'https://randomuser.me/api/portraits/women/63.jpg',
     password: "123123"
   )
-  user.save!
-  i += 1
-end
+  print '.'.green
+print '.'.green
+  User.create!(
+    email: 'user_3@lewagon.com',
+    first_name:  'Randy',
+    last_name: 'Powel',
+    nickname: 'Random Wonder',
+    profile_type: profile_array.sample,
+    age: rand(13..40),
+    occupation:  'Student',
+    points: rand(0..100),
+    nationality: 'Israel',
+    photo:  'https://randomuser.me/api/portraits/men/40.jpg',
+    password: "123123"
+  )
 puts 'done'.blue
 
 print 'creating kits'.green
@@ -110,76 +99,197 @@ Kit.create!(user_id: 3,
 puts 'done'.blue
 
 print 'creating races'.green
-User.all.each do |usr|
-  print '.'.green
-  start_value = rand(2..30)
-  Race.create!(
-    user_id: usr.id,
-    title: Faker::Lorem.sentence(2),
+start_value = rand(2..30)
+Race.create!(
+    user_id: 1,
+    title: 'Dizengoff-Azerieli Masters',
     start_date: Faker::Date.forward(start_value),
-    category: 'Applied',)
-end
+    category: '',)
+print '.'.green
+Race.create!(
+    user_id: 2,
+    title: 'Promenade Show-off',
+    start_date: '2019-03-07',
+    category: '',)
+print '.'.green
+Race.create!(
+    user_id: 3,
+    title: 'Yafo Jam',
+    start_date: Faker::Date.forward(start_value),
+    category: '',)
+print '.'.green
+Race.create!(
+    user_id: 4,
+    title: 'Bograshov Challenge',
+    start_date: Faker::Date.forward(start_value),
+    category: '',)
+print '.'.green
+Race.create!(
+    user_id: 5,
+    title: 'King George Slam',
+    start_date: Faker::Date.forward(start_value),
+    category: '',)
+print '.'.green
 puts 'done'.blue
 
+
+
 print 'assigning participants'.green
-Race.all.each do |rce|
-  print '.'.green
-  qty = rand(2..5)
-  users = User.all.sample(qty)
-  counter = 0
-  qty.times do |part|
-   Participant.create!(
-    race_id: rce.id,
-    user_id: users[counter].id,
+  Participant.create!(
+    race_id: 1,
+    user_id: User.find(1).id,
     duration: 0,
     points: 0,
-    status: %w[applied dropped missed].sample,
-   )
-   counter += 1
- end
-end
+    status: 'finished',
+  )
+print '.'.green
+  Participant.create!(
+    race_id: 1,
+    user_id: User.find(2).id,
+    duration: 0,
+    points: 0,
+    status: 'finished',
+  )
+print '.'.green
+Participant.create!(
+    race_id: 1,
+    user_id: User.find(4).id,
+    duration: 0,
+    points: 0,
+    status: 'finished',
+  )
+print '.'.green
+Participant.create!(
+    race_id: 2,
+    user_id: User.find(2).id,
+    duration: 0,
+    points: 0,
+    status: 'finished',
+  )
+print '.'.green
+Participant.create!(
+    race_id: 2,
+    user_id: User.find(3).id,
+    duration: 0,
+    points: 0,
+    status: 'finished',
+  )
+print '.'.green
+Participant.create!(
+    race_id: 2,
+    user_id: User.find(4).id,
+    duration: 0,
+    points: 0,
+    status: 'finished',
+  )
+print '.'.green
+Participant.create!(
+    race_id: 2,
+    user_id: User.find(5).id,
+    duration: 0,
+    points: 0,
+    status: 'finished',
+  )
+print '.'.green
+Participant.create!(
+    race_id: 3,
+    user_id: User.find(3).id,
+    duration: 0,
+    points: 0,
+    status: 'finished',
+  )
+print '.'.green
+Participant.create!(
+    race_id: 3,
+    user_id: User.find(6).id,
+    duration: 0,
+    points: 0,
+    status: 'finished',
+  )
+print '.'.green
+Participant.create!(
+    race_id: 4,
+    user_id: User.find(6).id,
+    duration: 0,
+    points: 0,
+    status: 'finished',
+  )
+print '.'.green
+Participant.create!(
+    race_id: 4,
+    user_id: User.find(1).id,
+    duration: 0,
+    points: 0,
+    status: 'finished',
+  )
+print '.'.green
+Participant.create!(
+    race_id: 4,
+    user_id: User.find(2).id,
+    duration: 0,
+    points: 0,
+    status: 'finished',
+  )
+print '.'.green
+Participant.create!(
+    race_id: 4,
+    user_id: User.find(3).id,
+    duration: 0,
+    points: 0,
+    status: 'finished',
+  )
+print '.'.green
+Participant.create!(
+    race_id: 4,
+    user_id: User.find(4).id,
+    duration: 0,
+    points: 0,
+    status: 'finished',
+  )
+print '.'.green
+Participant.create!(
+    race_id: 5,
+    user_id: User.find(6).id,
+    duration: 0,
+    points: 0,
+    status: 'finished',
+  )
+print '.'.green
+Participant.create!(
+    race_id: 5,
+    user_id: User.find(5).id,
+    duration: 0,
+    points: 0,
+    status: 'finished',
+  )
+print '.'.green
+Participant.create!(
+    race_id: 5,
+    user_id: User.find(4).id,
+    duration: 0,
+    points: 0,
+    status: 'finished',
+  )
+print '.'.green
+Participant.create!(
+    race_id: 5,
+    user_id: User.find(3).id,
+    duration: 0,
+    points: 0,
+    status: 'finished',
+  )
+print '.'.green
 puts 'done'.blue
 
 print 'creating checkpoints'.green
 Race.all.each do |rce|
   print '.'.green
-  Checkpoint.create!(
-  position: 1,
-  race_id: rce.id,
-  longitude: 34.766921,
-  latitude: 32.078592,
-  )
-  Checkpoint.create!(
-  position: 2,
-  race_id: rce.id,
-  longitude: 34.767746,
-  latitude:  32.082028,
-  )
-  Checkpoint.create!(
-  position: 3,
-  race_id: rce.id,
-  longitude: 34.766858,
-  latitude:  32.079319,
-  )
-  Checkpoint.create!(
-  position: 4,
-  race_id: rce.id,
-  longitude:  34.766118,
-  latitude:  32.078698,
-  )
-  Checkpoint.create!(
-  position: 5,
-  race_id: rce.id,
-  longitude: 34.765544,
-  latitude:  32.075341,
-  )
-  Checkpoint.create!(
-  position: 6,
-  race_id: rce.id,
-  longitude: 34.762714,
-  latitude:  32.067418,
-  )
-  end
+Checkpoint.create!(race_id: rce.id, position: 1, latitude: 32.076356, longitude: 34.765882, location: "Beach Front")
+Checkpoint.create!(race_id: rce.id,
+position: 2, latitude: 32.077601,  longitude: 34.766345, location: "Mike's Place")
+Checkpoint.create!(race_id: rce.id,
+position: 3, latitude: 32.078823, longitude: 34.766782, location: "London Garden")
+end
 puts 'done'.blue
 puts ''
 puts 'All done!'.green

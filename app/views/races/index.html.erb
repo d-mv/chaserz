@@ -12,7 +12,7 @@
       if race.start_date >= Date.parse(Date.today.to_s) %>
       <div class="race-card" id='<%= race.id %>'>
         <div class="race-card-map-wrapper">
-          <div class='race-card-map' style='background-image: url("https://res.cloudinary.com/diciu4xpu/image/upload/v1551267840/chaserz/cardmap.png");'></div>
+          <div class='race-card-map' style='background-image: url("https://res.cloudinary.com/diciu4xpu/image/upload/v1551888528/chaserz/map_empty.png");'></div>
           <% my_races = race.participants.where(race_id: race.id, user_id: current_user.id).length %>
           <% if my_races == 1 %>
             <div class="race-card-status text center white">applied</div>

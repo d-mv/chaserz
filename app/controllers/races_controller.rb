@@ -31,6 +31,7 @@ class RacesController < ApplicationController
     @race = Race.find(params[:race])
     race_checkpoints = @race.checkpoints.order(position: :asc)
     @race_checkpoints = []
+    # binding.pry
     location = params[:location].split(',').map(&:to_f)
     @race_checkpoints << location
     race_checkpoints.each { |el| @race_checkpoints << [el.longitude, el.latitude] }

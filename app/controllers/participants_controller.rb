@@ -15,10 +15,13 @@ class ParticipantsController < ApplicationController
     participant.update(duration: params[:duration], status: 'finished')
     race_status = 0
     participants.each { |part| race_status += 1 if part.status == 'racing' }
-    return @status = false unless race_status.zero?
+    # return @status = false unless race_status.zero?
 
     participants.map { |part| part.points = 0 }
-    @ranks = points(participants.order(duration: :asc), params[:race])
+    # demo
+    # @ranks = points(participants.order(duration: :asc), params[:race])
+    @ranks = points(participants.order(duration: :desc), params[:race])
+    # end of demo
     @status = true
     @ranks.each do |part|
       points = part.user.points + part.points
