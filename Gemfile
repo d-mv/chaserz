@@ -12,7 +12,7 @@ gem 'sidekiq'
 gem 'sidekiq-failures', '~> 1.0'
 
 gem 'autoprefixer-rails'
-gem 'bootstrap-sass', '~> 3.3'
+gem 'bootstrap-sass', '> 3.3'
 gem 'font-awesome-sass', '~> 5.5.0'
 gem 'sassc-rails'
 gem 'simple_form'
